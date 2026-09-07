@@ -41,6 +41,7 @@
 
       <div class="nav__links">
         <a href="work.html" class="nav__link">Work</a>
+        <a href="photography.html" class="nav__link">Photography</a>
         <a href="about.html" class="nav__link">About</a>
         <a href="contact.html" class="nav__link">Contact</a>
       </div>
@@ -64,6 +65,7 @@
     <!-- Mobile menu -->
     <div class="nav__mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
       <a href="work.html" class="nav__mobile-link">Work</a>
+      <a href="photography.html" class="nav__mobile-link">Photography</a>
       <a href="about.html" class="nav__mobile-link">About</a>
       <a href="contact.html" class="nav__mobile-link">Contact</a>
       <a href="contact.html" class="btn btn--primary" style="margin-top: 1rem;">Let's Work Together</a>
@@ -75,7 +77,21 @@
 
     <!-- ── HERO ───────────────────────────────────────────── -->
     <section class="hero" aria-label="Introduction">
-      <div class="hero__bg" aria-hidden="true"></div>
+      <!-- Dedicated Layered Atmosphere -->
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__bg-media">
+          <img
+            src="assets/images/proj5_product_photo.jpg"
+            alt=""
+            class="hero__bg-img"
+            id="hero-bg-image"
+            loading="eager"
+            decoding="async"
+          >
+        </div>
+        <div class="hero__bg-overlay"></div>
+        <div class="hero__bg-fade"></div>
+      </div>
       <div class="hero__content">
 
         <div class="hero__eyebrow hero-animate-1">
@@ -233,6 +249,7 @@
           <div class="footer__col-heading">Navigate</div>
           <div class="footer__links">
             <a href="work.html" class="footer__link">Work</a>
+            <a href="photography.html" class="footer__link">Photography</a>
             <a href="about.html" class="footer__link">About</a>
             <a href="contact.html" class="footer__link">Contact</a>
             <a href="#" class="footer__link" data-resume>View Resume</a>
@@ -256,6 +273,7 @@
 
   <!-- Scripts -->
   <script src="js/config.js"></script>
+  <script src="js/image-utils.js"></script>
   <script src="js/projects.js"></script>
   <script src="js/main.js"></script>
   <script src="js/home.js"></script>

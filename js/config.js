@@ -36,6 +36,23 @@ const CONFIG = {
   metaDescription: "Portfolio of Thevindu Kottege — Graphic Designer and Video Editor creating visual content for brands, creators and digital media.",
   ogImage: "assets/images/og-image.jpg",
 
+  // --- Hero Background Atmosphere (Homepage) ---
+  // Place your image path (e.g. "assets/images/hero-atmosphere.jpg")
+  // or your Google Drive share URL / File ID here!
+  // Recommended opacity: 0.12 - 0.25 (keeps text readable and mood cinematic)
+  heroBackgroundImage: "assets/images/proj5_product_photo.jpg", // REPLACE_HERE: Put your hero image or Google Drive link
+  heroBackgroundOpacity: 0.18, // Configurable opacity (0.0 = invisible, 1.0 = full strength)
+
+  // --- Photography Section Metadata ---
+  photography: {
+    title: "Through My Lens",
+    subtitle: "Moments, places and perspectives.",
+    description: "A collection of landscapes, places, moments and visual experiments.",
+    seoTitle: "Thevindu Kottege — Photography",
+    seoDescription: "Photography portfolio of Thevindu Kottege featuring landscapes, places, people and visual stories.",
+    heroImage: "assets/images/proj5_product_photo.jpg", // REPLACE_HERE: Primary editorial hero image (or Google Drive link)
+  },
+
   // --- Copyright ---
   copyrightYear: "2026",
 };
@@ -43,3 +60,4 @@ const CONFIG = {
 // Freeze to prevent accidental mutation
 Object.freeze(CONFIG);
 Object.freeze(CONFIG.social);
+if (CONFIG.photography) Object.freeze(CONFIG.photography);

@@ -214,14 +214,20 @@ function buildSocialLinks(social, extended = false) {
  * Utility: build a project card HTML
  */
 function buildProjectCard(project, variant = '') {
-  const imgHtml = project.thumbnail
+  const thumbSrc = (typeof ImageUtils !== 'undefined' && project.thumbnail)
+    ? ImageUtils.resolveImageUrl(project.thumbnail, 'medium')
+    : project.thumbnail;
+
+  const imgHtml = thumbSrc
     ? `<img
-        src="${project.thumbnail}"
+        src="${thumbSrc}"
         alt="${project.title}"
         class="project-card__img"
         loading="lazy"
+        decoding="async"
         width="800"
         height="534"
+        onerror="if (typeof ImageUtils !== 'undefined') ImageUtils.handleImageError(this, '${project.title.replace(/'/g, "\\'")}', '${project.categoryLabel}');"
       >`
     : `<div class="project-card__placeholder project-card__placeholder--${(project.id % 4) + 1}">
         <span class="label" style="opacity:0.4">${project.categoryLabel}</span>

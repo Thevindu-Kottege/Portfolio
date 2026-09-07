@@ -1,0 +1,818 @@
+/* ============================================================
+   PHOTOGRAPHY EDITORIAL THEME & GALLERY — css/photography.css
+   ============================================================
+   "Light Photographic Journal" — Dual Personality of the Portfolio.
+   Warm ivory, cream, deep charcoal, and restrained bronze.
+   ============================================================ */
+
+/* ── Light Theme Tokens Override ───────────────────────────── */
+body.theme-light {
+  --bg-primary:    #f8f6f0;   /* Warm ivory / natural cotton paper */
+  --bg-secondary:  #f0ece3;   /* Soft warm cream for alternating sections */
+  --bg-card:       #ffffff;   /* Clean white photo mount / card */
+  --bg-elevated:   #e7e1d6;   /* Subtly darker cream for pills and inputs */
+
+  --text-primary:   #1a1917;  /* Deep charcoal ink */
+  --text-secondary: #645f56;  /* Muted warm slate / taupe */
+  --text-tertiary:  #968f84;  /* Soft stone grey */
+
+  --accent:         #8c6d48;  /* Muted warm bronze */
+  --accent-hover:   #735634;  /* Deep bronze on hover */
+  --accent-muted:   rgba(140, 109, 72, 0.09);
+
+  --border:         rgba(26, 25, 23, 0.09);
+  --border-hover:   rgba(26, 25, 23, 0.2);
+  --border-accent:  rgba(140, 109, 72, 0.35);
+
+  --shadow-sm:  0 2px 6px rgba(26, 25, 23, 0.04);
+  --shadow-md:  0 6px 24px rgba(26, 25, 23, 0.07);
+  --shadow-lg:  0 16px 48px rgba(26, 25, 23, 0.1);
+  --shadow-xl:  0 24px 72px rgba(26, 25, 23, 0.14);
+
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Smooth color transitions between pages */
+.page-transition {
+  transition: background-color 0.45s ease, color 0.45s ease;
+}
+
+/* ── Navigation (Light Theme) ──────────────────────────────── */
+body.theme-light .nav {
+  background: rgba(248, 246, 240, 0.85);
+  border-bottom: 1px solid transparent;
+}
+
+body.theme-light .nav.scrolled {
+  background: rgba(248, 246, 240, 0.94);
+  border-bottom-color: var(--border);
+  box-shadow: 0 4px 20px rgba(26, 25, 23, 0.05);
+}
+
+body.theme-light .nav__link {
+  color: var(--text-secondary);
+}
+
+body.theme-light .nav__link:hover,
+body.theme-light .nav__link.active {
+  color: var(--text-primary);
+}
+
+body.theme-light .nav__hamburger-line {
+  background: var(--text-primary);
+}
+
+body.theme-light .nav__mobile-menu {
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border);
+}
+
+body.theme-light .nav__mobile-link {
+  color: var(--text-secondary);
+}
+
+body.theme-light .nav__mobile-link.active,
+body.theme-light .nav__mobile-link:hover {
+  color: var(--text-primary);
+}
+
+/* ── Editorial Cross-Nav Badge ─────────────────────────────── */
+.nav__cross-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  background: var(--accent-muted);
+  border: 1px solid var(--border-accent);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  transition: all var(--duration-fast) var(--ease-out);
+  text-decoration: none;
+}
+
+.nav__cross-link:hover {
+  background: var(--accent);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* ── Editorial Hero ────────────────────────────────────────── */
+.editorial-hero {
+  padding-top: calc(var(--nav-height) + clamp(2rem, 5vw, 4rem));
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+  position: relative;
+}
+
+.editorial-hero__header {
+  max-width: 860px;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.editorial-hero__meta-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.editorial-hero__title {
+  font-size: clamp(2.75rem, 6.5vw, 5rem);
+  font-family: var(--font-display);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+  font-weight: 600;
+}
+
+.editorial-hero__title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+
+.editorial-hero__desc {
+  font-size: clamp(1.125rem, 2vw, 1.35rem);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 640px;
+  margin-bottom: var(--space-6);
+}
+
+.editorial-hero__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+/* Large Featured Hero Image */
+.editorial-hero__media-wrapper {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+
+.editorial-hero__media {
+  position: relative;
+  aspect-ratio: 21 / 9;
+  max-height: 640px;
+  overflow: hidden;
+  background-color: var(--bg-secondary);
+}
+
+.editorial-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-hero__media-wrapper:hover .editorial-hero__img {
+  transform: scale(1.02);
+}
+
+.editorial-hero__caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  background: var(--bg-card);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border);
+}
+
+.editorial-hero__caption-left {
+  font-family: var(--font-body);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ── Photography Series Showcase ───────────────────────────── */
+.series-section {
+  padding-block: clamp(3rem, 6vw, 5rem);
+  background-color: var(--bg-secondary);
+  border-block: 1px solid var(--border);
+}
+
+.series-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.series-card {
+  position: relative;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration-base) var(--ease-out),
+              box-shadow var(--duration-base) var(--ease-out),
+              border-color var(--duration-base) var(--ease-out);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.series-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-hover);
+}
+
+.series-card__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.series-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.series-card:hover .series-card__img {
+  transform: scale(1.04);
+}
+
+.series-card__count {
+  position: absolute;
+  bottom: var(--space-3);
+  right: var(--space-3);
+  background: rgba(26, 25, 23, 0.75);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: var(--text-xs);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.series-card__body {
+  padding: clamp(1.25rem, 2vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.series-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.series-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  line-height: 1.25;
+}
+
+.series-card__desc {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: var(--space-4);
+  flex: 1;
+}
+
+.series-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+/* ── Filter Bar ────────────────────────────────────────────── */
+.photo-filters {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding-block: var(--space-4);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.photo-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.photo-filter-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 0.5rem 1.15rem;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-family: var(--font-body);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  white-space: nowrap;
+}
+
+.photo-filter-btn:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+  background: rgba(26, 25, 23, 0.03);
+}
+
+.photo-filter-btn.active {
+  background: var(--text-primary);
+  color: #ffffff;
+  border-color: var(--text-primary);
+}
+
+/* ── Editorial Masonry Gallery ─────────────────────────────── */
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: clamp(1rem, 2vw, 1.75rem);
+  align-items: start;
+}
+
+/* Editorial card spans & aspect ratios */
+.photo-card {
+  grid-column: span 4;
+  position: relative;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform var(--duration-base) var(--ease-out),
+              box-shadow var(--duration-base) var(--ease-out),
+              border-color var(--duration-base) var(--ease-out);
+  display: flex;
+  flex-direction: column;
+}
+
+.photo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-hover);
+}
+
+/* Proportional variations */
+.photo-card--portrait {
+  grid-column: span 4;
+}
+
+.photo-card--portrait .photo-card__media {
+  aspect-ratio: 3 / 4;
+}
+
+.photo-card--landscape {
+  grid-column: span 6;
+}
+
+.photo-card--landscape .photo-card__media {
+  aspect-ratio: 3 / 2;
+}
+
+.photo-card--wide {
+  grid-column: span 8;
+}
+
+.photo-card--wide .photo-card__media {
+  aspect-ratio: 16 / 9;
+}
+
+.photo-card--tall {
+  grid-column: span 4;
+  grid-row: span 2;
+}
+
+.photo-card--tall .photo-card__media {
+  aspect-ratio: 9 / 16;
+  max-height: 640px;
+}
+
+.photo-card--square {
+  grid-column: span 4;
+}
+
+.photo-card--square .photo-card__media {
+  aspect-ratio: 1 / 1;
+}
+
+.photo-card__media {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--bg-secondary);
+}
+
+.photo-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s var(--ease-out);
+  background-color: var(--bg-secondary);
+}
+
+.photo-card:hover .photo-card__img {
+  transform: scale(1.03);
+}
+
+/* Hover overlay with minimal editorial styling */
+.photo-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(26, 25, 23, 0.75) 0%,
+    rgba(26, 25, 23, 0.2) 40%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+  color: #ffffff;
+  pointer-events: none;
+}
+
+.photo-card:hover .photo-card__overlay,
+.photo-card:focus-visible .photo-card__overlay {
+  opacity: 1;
+}
+
+.photo-card__overlay-meta {
+  font-size: var(--text-xs);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #e5d7c3;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.photo-card__overlay-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 0.35rem;
+  color: #ffffff;
+}
+
+.photo-card__overlay-location {
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Bottom card label (always visible for refined editorial look) */
+.photo-card__caption {
+  padding: 0.85rem 1rem;
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+}
+
+.photo-card__title-static {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+}
+
+.photo-card__category-static {
+  font-size: var(--text-xs);
+  color: var(--accent);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── Lightbox Viewer ───────────────────────────────────────── */
+.photo-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgba(14, 13, 12, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--duration-base) var(--ease-out),
+              visibility var(--duration-base) var(--ease-out);
+}
+
+.photo-lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.photo-lightbox__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  z-index: 2;
+  color: rgba(240, 237, 232, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.photo-lightbox__counter {
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #c9a96e;
+  font-weight: 600;
+}
+
+.photo-lightbox__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.photo-lightbox__btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f0ede8;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.photo-lightbox__btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: scale(1.05);
+}
+
+.photo-lightbox__stage {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  overflow: hidden;
+  user-select: none;
+}
+
+.photo-lightbox__img-wrap {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-lightbox__img {
+  max-width: 92vw;
+  max-height: 72vh;
+  object-fit: contain;
+  box-shadow: 0 12px 60px rgba(0, 0, 0, 0.8);
+  border-radius: var(--radius-sm);
+  transition: opacity var(--duration-fast) ease, transform var(--duration-fast) ease;
+}
+
+/* Nav arrows */
+.photo-lightbox__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  z-index: 2;
+}
+
+.photo-lightbox__arrow:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.photo-lightbox__arrow--prev {
+  left: 1.5rem;
+}
+
+.photo-lightbox__arrow--next {
+  right: 1.5rem;
+}
+
+/* Lightbox details drawer / bar */
+.photo-lightbox__bottombar {
+  padding: 1.25rem 2rem;
+  background: rgba(18, 17, 16, 0.9);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f0ede8;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.photo-lightbox__meta-main {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.photo-lightbox__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 2vw, 1.4rem);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.photo-lightbox__location {
+  font-size: var(--text-xs);
+  color: #c9a96e;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.photo-lightbox__desc {
+  font-size: var(--text-sm);
+  color: #a39e95;
+  max-width: 800px;
+  line-height: 1.5;
+}
+
+.photo-lightbox__exif {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-xs);
+  color: #7a746a;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.photo-lightbox__exif-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ── Footer in Light Theme ─────────────────────────────────── */
+body.theme-light .footer {
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+}
+
+body.theme-light .footer__brand-name {
+  color: var(--text-primary);
+}
+
+body.theme-light .footer__brand-title {
+  color: var(--text-secondary);
+}
+
+body.theme-light .footer__col-heading {
+  color: var(--text-tertiary);
+}
+
+body.theme-light .footer__link {
+  color: var(--text-secondary);
+}
+
+body.theme-light .footer__link:hover {
+  color: var(--accent);
+}
+
+body.theme-light .footer__bottom {
+  border-top-color: var(--border);
+  color: var(--text-tertiary);
+}
+
+body.theme-light .back-to-top {
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+
+body.theme-light .back-to-top:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+  background: var(--bg-primary);
+}
+
+/* ── Responsive Behavior ───────────────────────────────────── */
+@media (max-width: 1024px) {
+  .photo-card--wide {
+    grid-column: span 6;
+  }
+  .photo-card--portrait {
+    grid-column: span 6;
+  }
+  .photo-card--landscape {
+    grid-column: span 6;
+  }
+  .photo-card--tall {
+    grid-column: span 6;
+  }
+  .photo-card--square {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 640px) {
+  .photo-gallery {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .photo-card,
+  .photo-card--wide,
+  .photo-card--portrait,
+  .photo-card--landscape,
+  .photo-card--tall,
+  .photo-card--square {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .photo-card--tall .photo-card__media {
+    aspect-ratio: 3 / 4;
+    max-height: none;
+  }
+
+  .photo-lightbox__arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .photo-lightbox__arrow--prev {
+    left: 0.5rem;
+  }
+
+  .photo-lightbox__arrow--next {
+    right: 0.5rem;
+  }
+
+  .photo-lightbox__bottombar {
+    padding: 1rem 1.25rem;
+  }
+
+  .editorial-hero__media {
+    aspect-ratio: 16 / 10;
+  }
+}
+

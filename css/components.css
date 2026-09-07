@@ -818,6 +818,43 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  overflow: hidden;
+}
+
+/* Layer 1: Atmospheric background image */
+.hero__bg-media {
+  position: absolute;
+  inset: -5% -5%;
+  width: 110%;
+  height: 110%;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.hero__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  opacity: var(--hero-bg-opacity, 0.18);
+  filter: contrast(110%) saturate(80%) brightness(85%);
+  transition: opacity var(--duration-slower) ease;
+}
+
+/* Layer 2: Dark tint overlay to maintain dark theme */
+.hero__bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(14, 14, 15, 0.52);
+}
+
+/* Layer 3: Edge & bottom fade gradients */
+.hero__bg-fade {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 45%, transparent 20%, var(--bg-primary) 85%),
+    linear-gradient(to bottom, transparent 40%, var(--bg-primary) 100%);
 }
 
 /* Subtle radial glow */
@@ -833,6 +870,7 @@
     rgba(201, 169, 110, 0.06) 0%,
     transparent 70%
   );
+  z-index: 1;
 }
 
 /* Abstract grid lines */
@@ -845,7 +883,8 @@
     linear-gradient(90deg, var(--border) 1px, transparent 1px);
   background-size: 80px 80px;
   mask-image: radial-gradient(ellipse at 70% 50%, black 0%, transparent 70%);
-  opacity: 0.4;
+  opacity: 0.35;
+  z-index: 1;
 }
 
 .hero__content {

@@ -112,11 +112,23 @@ function renderProjectPage(project) {
   if (galleryEl) {
     if (project.gallery && project.gallery.length > 0) {
       galleryEl.className = `project-gallery ${project.gallery.length === 1 ? 'project-gallery--full' : ''}`;
-      galleryEl.innerHTML = project.gallery.map(img => `
-        <div class="project-gallery__item reveal">
-          <img src="${img.src}" alt="${img.alt}" loading="lazy">
-        </div>
-      `).join('');
+      galleryEl.innerHTML = project.gallery.map(img => {
+        const resolvedSrc = typeof ImageUtils !== 'undefined'
+          ? ImageUtils.resolveImageUrl(img.src, 'full')
+          : img.src;
+
+        return `
+          <div class="project-gallery__item reveal">
+            <img
+              src="${resolvedSrc}"
+              alt="${img.alt}"
+              loading="lazy"
+              decoding="async"
+              onerror="if (typeof ImageUtils !== 'undefined') ImageUtils.handleImageError(this, '${img.alt.replace(/'/g, "\\'")}', '${project.categoryLabel}');"
+            >
+          </div>
+        `;
+      }).join('');
     } else {
       // Placeholder gallery
       galleryEl.className = 'project-gallery project-gallery--full';
@@ -159,9 +171,19 @@ function renderProjectPage(project) {
 /* ── Hero image helper ───────────────────────────────────── */
 function renderHeroImage(project) {
   if (project.heroImage) {
+    const resolvedHeroSrc = typeof ImageUtils !== 'undefined'
+      ? ImageUtils.resolveImageUrl(project.heroImage, 'full')
+      : project.heroImage;
+
     return `
       <div class="project-hero__image hero-animate-4">
-        <img src="${project.heroImage}" alt="${project.title}" loading="eager">
+        <img
+          src="${resolvedHeroSrc}"
+          alt="${project.title}"
+          loading="eager"
+          decoding="async"
+          onerror="if (typeof ImageUtils !== 'undefined') ImageUtils.handleImageError(this, '${project.title.replace(/'/g, "\\'")}', '${project.categoryLabel}');"
+        >
       </div>
     `;
   }

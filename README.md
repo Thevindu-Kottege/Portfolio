@@ -72,8 +72,15 @@ const CONFIG = {
 };
 ```
 
-### 2. Add New Portfolio Projects
-Open `js/projects.js` and add your project object to the `PROJECTS` array:
+### 2. Configure Hero Background Atmosphere
+Open `js/config.js` to customize the background image and its subtle visibility behind the homepage hero:
+```javascript
+heroBackgroundImage: "assets/images/proj5_product_photo.jpg", // Local image or Google Drive link/ID
+heroBackgroundOpacity: 0.18, // 0.12 - 0.25 recommended for subtle, high-contrast dark ambiance
+```
+
+### 3. Add New Portfolio Projects
+Open `js/projects.js` and add your project object to the `PROJECTS` array (supports Google Drive links or local images):
 ```javascript
 {
   id: 9,
@@ -85,7 +92,7 @@ Open `js/projects.js` and add your project object to the `PROJECTS` array:
   description: "Short project summary.",
   role: "Graphic Designer",
   tools: ["Photoshop", "Illustrator"],
-  thumbnail: "assets/images/my-project.jpg",
+  thumbnail: "assets/images/my-project.jpg", // or Google Drive link / ID
   heroImage: "assets/images/my-project-hero.jpg",
   brief: "What the client needed...",
   goal: "What we aimed to achieve...",
@@ -93,6 +100,31 @@ Open `js/projects.js` and add your project object to the `PROJECTS` array:
   featured: true,
 }
 ```
+
+### 4. Add Photographs & Series via Google Drive
+Open `js/photography-data.js` to manage your photography journal:
+1. **Upload your photo** to your Google Drive folder.
+2. **Right-click > Share > Set "General access" to "Anyone with the link can view"** > Copy link.
+3. **Paste the link or file ID** directly into `PHOTOGRAPHY_PHOTOS` or `PHOTOGRAPHY_SERIES`:
+```javascript
+{
+  id: 9,
+  title: "Sunset Over the Coast",
+  category: "Landscape",
+  seriesId: "southern-coast", // optional series association
+  date: "January 2026",
+  location: "Mirissa, Sri Lanka",
+  image: "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing", // or just "YOUR_FILE_ID"
+  aspectRatio: "landscape", // 'portrait', 'landscape', 'wide', 'tall', or 'square'
+  description: "Golden rays breaking through monsoon clouds over the Indian Ocean.",
+  exif: {
+    camera: "Sony A7 IV",
+    lens: "FE 24-70mm f/2.8 GM II",
+    settings: "1/500s · f/4.0 · ISO 100",
+  },
+}
+```
+The website's `ImageUtils` engine automatically converts Google Drive links into direct, high-speed CDN URLs and includes graceful fallbacks if permissions are missing.
 
 ---
 
