@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project — Thevindu Kottege</title>
+  <meta name="description" content="Project case study by Thevindu Kottege — Graphic Designer and Video Editor.">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Project — Thevindu Kottege">
+  <meta property="og:description" content="Project case study by Thevindu Kottege.">
+  <meta property="og:image" content="">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    /* Spin animation for submit button */
+    .spin-icon {
+      animation: spin 0.8s linear infinite;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body class="page-transition">
+
+  <!-- ── NAVIGATION ─────────────────────────────────────── -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Thevindu Kottege — Home">
+        <span class="nav__logo-name" data-site-name>Thevindu Kottege</span>
+        <span class="nav__logo-title">Designer & Video Editor</span>
+      </a>
+      <div class="nav__links">
+        <a href="work.html" class="nav__link">Work</a>
+        <a href="about.html" class="nav__link">About</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+      </div>
+      <div class="nav__cta">
+        <a href="contact.html" class="btn btn--primary btn--sm">Let's Work Together</a>
+        <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav__mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+      <a href="work.html" class="nav__mobile-link">Work</a>
+      <a href="about.html" class="nav__mobile-link">About</a>
+      <a href="contact.html" class="nav__mobile-link">Contact</a>
+      <a href="contact.html" class="btn btn--primary" style="margin-top: 1rem;">Let's Work Together</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- Breadcrumb -->
+    <div style="position:fixed; top: var(--nav-height); left:0; right:0; z-index:50; padding: 0.75rem clamp(1.25rem, 4vw, 2.5rem); border-bottom: 1px solid var(--border); background: rgba(14,14,15,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+      <div style="max-width: var(--max-width); margin: auto; display:flex; align-items:center; gap: 0.5rem;">
+        <a href="work.html" style="font-size: var(--text-xs); color: var(--text-tertiary); transition: color 0.15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-tertiary)'">← All Work</a>
+      </div>
+    </div>
+
+    <!-- ── PROJECT HERO ────────────────────────────────────── -->
+    <section
+      class="project-hero hero-animate-1"
+      id="project-hero"
+      aria-label="Project introduction"
+      style="padding-top: calc(var(--nav-height) + 3rem + 40px);"
+    >
+      <!-- Populated by project.js -->
+      <div class="container">
+        <div class="skeleton" style="width:120px;height:18px;border-radius:4px;margin-bottom:1.5rem;"></div>
+        <div class="skeleton" style="width:70%;height:64px;border-radius:8px;margin-bottom:2rem;"></div>
+        <div style="display:flex;gap:2rem;">
+          <div class="skeleton" style="width:100px;height:40px;border-radius:6px;"></div>
+          <div class="skeleton" style="width:100px;height:40px;border-radius:6px;"></div>
+          <div class="skeleton" style="width:100px;height:40px;border-radius:6px;"></div>
+        </div>
+        <div class="skeleton" style="height:420px;border-radius:12px;margin-top:2.5rem;"></div>
+      </div>
+    </section>
+
+    <!-- ── OVERVIEW ───────────────────────────────────────── -->
+    <section class="section section--alt" aria-label="Project overview">
+      <div class="container">
+        <h2 class="heading-2 reveal" style="margin-bottom: clamp(1.5rem, 3vw, 2.5rem);">Overview</h2>
+        <div class="project-overview" id="project-overview">
+          <!-- Populated by project.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROCESS ────────────────────────────────────────── -->
+    <section class="section" id="process-section" aria-label="Design process">
+      <div class="container">
+        <h2 class="heading-2 reveal" style="margin-bottom: clamp(1.5rem, 3vw, 2.5rem);">Process</h2>
+        <div class="project-overview" id="project-process">
+          <!-- Populated by project.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FINAL WORK ─────────────────────────────────────── -->
+    <section class="section section--alt" aria-label="Final work gallery">
+      <div class="container">
+        <h2 class="heading-2 reveal" style="margin-bottom: clamp(1.5rem, 3vw, 2.5rem);">The Work</h2>
+        <div class="project-gallery" id="project-gallery">
+          <!-- Populated by project.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ── RESULTS ────────────────────────────────────────── -->
+    <section class="section" id="results-section" aria-label="Project results">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">Results</span>
+          <h2 class="heading-2">The Impact</h2>
+        </div>
+        <div class="results-grid" id="results-grid">
+          <!-- Populated by project.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PREV/NEXT NAV ──────────────────────────────────── -->
+    <section class="section section--alt" aria-label="Project navigation">
+      <div class="container">
+        <div id="project-adjacent-nav">
+          <!-- Populated by project.js -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ──────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <div class="footer__brand-name" data-footer-name>Thevindu Kottege</div>
+          <div class="footer__brand-title" data-footer-title>Graphic Designer & Video Editor</div>
+          <div class="social-links" style="margin-top: 1.25rem;" data-footer-social></div>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-heading">Navigate</div>
+          <div class="footer__links">
+            <a href="work.html" class="footer__link">Work</a>
+            <a href="about.html" class="footer__link">About</a>
+            <a href="contact.html" class="footer__link">Contact</a>
+            <a href="#" class="footer__link" data-resume>View Resume</a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-heading">Get In Touch</div>
+          <div class="footer__links">
+            <a href="#" class="footer__link" data-email data-email-text>hello@yourname.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copyright" data-footer-year>© 2026 Thevindu Kottege</span>
+        <button class="back-to-top" aria-label="Back to top">Back to top ↑</button>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/project.js"></script>
+</body>
+</html>

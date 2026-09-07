@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work — Thevindu Kottege</title>
+  <meta name="description" content="Explore portfolio projects by Thevindu Kottege — graphic design, video editing, photography, motion graphics, and 3D work for brands, creators and digital media.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Work — Thevindu Kottege">
+  <meta property="og:description" content="Explore portfolio projects by Thevindu Kottege across graphic design, video editing, photography, and motion graphics.">
+  <meta property="og:url" content="https://yourname.com/work.html">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="page-transition">
+
+  <!-- ── NAVIGATION ─────────────────────────────────────── -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Thevindu Kottege — Home">
+        <span class="nav__logo-name" data-site-name>Thevindu Kottege</span>
+        <span class="nav__logo-title">Designer & Video Editor</span>
+      </a>
+      <div class="nav__links">
+        <a href="work.html" class="nav__link">Work</a>
+        <a href="about.html" class="nav__link">About</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+      </div>
+      <div class="nav__cta">
+        <a href="contact.html" class="btn btn--primary btn--sm">Let's Work Together</a>
+        <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav__mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+      <a href="work.html" class="nav__mobile-link">Work</a>
+      <a href="about.html" class="nav__mobile-link">About</a>
+      <a href="contact.html" class="nav__mobile-link">Contact</a>
+      <a href="contact.html" class="btn btn--primary" style="margin-top: 1rem;">Let's Work Together</a>
+      <div class="nav__mobile-social" data-footer-social></div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ── PAGE HEADER ────────────────────────────────────── -->
+    <header class="page-header section--alt">
+      <div class="container">
+        <span class="label hero-animate-1">Portfolio</span>
+        <h1 class="page-header__title hero-animate-2">Selected Work</h1>
+        <p class="page-header__subtitle hero-animate-3">
+          Explore my work across graphic design, video editing and visual content.
+        </p>
+      </div>
+    </header>
+
+    <!-- ── PROJECT GRID ───────────────────────────────────── -->
+    <section class="section" aria-label="All projects">
+      <div class="container">
+
+        <!-- Category filters -->
+        <div class="filter-tabs" role="tablist" aria-label="Filter projects by category">
+          <button class="filter-tab active" data-category="all" role="tab" aria-selected="true" id="filter-all">All</button>
+          <button class="filter-tab" data-category="graphic-design" role="tab" aria-selected="false" id="filter-graphic-design">Graphic Design</button>
+          <button class="filter-tab" data-category="video-editing" role="tab" aria-selected="false" id="filter-video-editing">Video Editing</button>
+          <button class="filter-tab" data-category="photography" role="tab" aria-selected="false" id="filter-photography">Photography</button>
+          <button class="filter-tab" data-category="motion" role="tab" aria-selected="false" id="filter-motion">Motion Graphics</button>
+          <button class="filter-tab" data-category="3d-motion" role="tab" aria-selected="false" id="filter-3d">3D Design</button>
+        </div>
+
+        <!-- Projects grid -->
+        <div
+          class="project-grid project-grid--work"
+          id="work-grid"
+          role="tabpanel"
+          aria-label="Filtered project results"
+        >
+          <!-- Populated by work.js -->
+          <div class="skeleton" style="height:360px; border-radius:12px;"></div>
+          <div class="skeleton" style="height:360px; border-radius:12px;"></div>
+          <div class="skeleton" style="height:360px; border-radius:12px;"></div>
+          <div class="skeleton" style="height:360px; border-radius:12px;"></div>
+          <div class="skeleton" style="height:360px; border-radius:12px;"></div>
+          <div class="skeleton" style="height:360px; border-radius:12px;"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── CTA ────────────────────────────────────────────── -->
+    <section class="cta-banner reveal" aria-label="Call to action">
+      <h2 class="cta-banner__title">Like what you see?</h2>
+      <p class="cta-banner__subtitle">Let's collaborate on your next project.</p>
+      <div class="cta-banner__actions">
+        <a href="contact.html" class="btn btn--primary btn--lg" id="work-cta">
+          Get in Touch <span class="btn__arrow">→</span>
+        </a>
+        <a href="about.html" class="btn btn--ghost btn--lg" id="work-about">Learn About Me</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ──────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <div class="footer__brand-name" data-footer-name>Thevindu Kottege</div>
+          <div class="footer__brand-title" data-footer-title>Graphic Designer & Video Editor</div>
+          <div class="social-links" style="margin-top: 1.25rem;" data-footer-social></div>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-heading">Navigate</div>
+          <div class="footer__links">
+            <a href="work.html" class="footer__link">Work</a>
+            <a href="about.html" class="footer__link">About</a>
+            <a href="contact.html" class="footer__link">Contact</a>
+            <a href="#" class="footer__link" data-resume>View Resume</a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-heading">Get In Touch</div>
+          <div class="footer__links">
+            <a href="#" class="footer__link" data-email data-email-text>hello@yourname.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copyright" data-footer-year>© 2026 Thevindu Kottege</span>
+        <button class="back-to-top" aria-label="Back to top">Back to top ↑</button>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/work.js"></script>
+</body>
+</html>

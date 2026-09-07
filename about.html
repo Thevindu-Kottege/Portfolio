@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Thevindu Kottege</title>
+  <meta name="description" content="About Thevindu Kottege — a freelance Graphic Designer and Video Editor creating visual content for brands, creators and digital media.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="About — Thevindu Kottege">
+  <meta property="og:description" content="Freelance Graphic Designer and Video Editor creating visual content for brands, creators and digital media.">
+  <meta property="og:url" content="https://yourname.com/about.html">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="page-transition">
+
+  <!-- ── NAVIGATION ─────────────────────────────────────── -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Thevindu Kottege — Home">
+        <span class="nav__logo-name" data-site-name>Thevindu Kottege</span>
+        <span class="nav__logo-title">Designer & Video Editor</span>
+      </a>
+      <div class="nav__links">
+        <a href="work.html" class="nav__link">Work</a>
+        <a href="about.html" class="nav__link">About</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+      </div>
+      <div class="nav__cta">
+        <a href="contact.html" class="btn btn--primary btn--sm">Let's Work Together</a>
+        <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav__mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+      <a href="work.html" class="nav__mobile-link">Work</a>
+      <a href="about.html" class="nav__mobile-link">About</a>
+      <a href="contact.html" class="nav__mobile-link">Contact</a>
+      <a href="contact.html" class="btn btn--primary" style="margin-top: 1rem;">Let's Work Together</a>
+      <div class="nav__mobile-social" data-footer-social></div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ── ABOUT HERO ─────────────────────────────────────── -->
+    <section class="about-hero" aria-label="About introduction">
+      <div class="container">
+        <div class="about-hero__inner">
+
+          <!-- Text side -->
+          <div>
+            <span class="label hero-animate-1">About Me</span>
+            <h1 class="display-2 hero-animate-2" style="margin: 1rem 0 2rem;">
+              Creative designer.<br>
+              <em style="color: var(--accent); font-style: normal;">Visual storyteller.</em>
+            </h1>
+
+            <div class="about-intro hero-animate-3">
+              <p style="margin-bottom: 1.25rem;">
+                I'm a <strong>freelance Graphic Designer and Video Editor</strong> focused on creating
+                compelling visual content for brands, content creators, and digital media.
+              </p>
+              <p style="margin-bottom: 1.25rem;">
+                I work across a broad range of creative disciplines — from bold social media graphics
+                and YouTube branding to short-form video editing and 3D visualisation. Every project
+                starts with understanding what you're trying to communicate, then finding the
+                clearest and most impactful way to say it visually.
+              </p>
+              <p>
+                Whether you're a brand looking to stand out, a creator building your visual identity,
+                or a business that needs content that converts — I'd love to work with you.
+              </p>
+            </div>
+
+            <div style="display:flex; flex-wrap:wrap; gap: 1rem; margin-top: 2rem;" class="hero-animate-4">
+              <a href="contact.html" class="btn btn--primary btn--lg" id="about-cta">
+                Work With Me <span class="btn__arrow">→</span>
+              </a>
+              <a href="#" class="btn btn--ghost btn--lg" data-resume id="about-resume">
+                View Resume
+              </a>
+            </div>
+          </div>
+
+          <!-- Image side -->
+          <div class="hero-animate-3">
+            <div class="about-hero__image">
+              <!-- Replace with your real photo -->
+              <div style="
+                width:100%; height:100%;
+                background: linear-gradient(160deg, #1a1a1d 0%, #222228 40%, #1a1510 100%);
+                display:flex; align-items:center; justify-content:center;
+                flex-direction:column; gap:1rem;
+              ">
+                <span style="font-size:4rem;" aria-hidden="true">📷</span>
+                <p style="color:var(--text-tertiary); font-size:var(--text-sm); text-align:center; padding:0 1rem;">
+                  Replace with your professional photo
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SKILLS ─────────────────────────────────────────── -->
+    <section class="section section--alt" aria-label="Skills">
+      <div class="container">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem,5vw,5rem); align-items:start;">
+
+          <div>
+            <div class="section-header reveal">
+              <span class="label">Capabilities</span>
+              <h2 class="heading-2">Skills</h2>
+            </div>
+
+            <div class="reveal">
+              <div class="skill-bar">
+                <div class="skill-bar__header">
+                  <span class="skill-bar__name">Graphic Design</span>
+                </div>
+                <div class="skill-bar__track">
+                  <div class="skill-bar__fill" data-width="90%"></div>
+                </div>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-bar__header">
+                  <span class="skill-bar__name">Video Editing</span>
+                </div>
+                <div class="skill-bar__track">
+                  <div class="skill-bar__fill" data-width="85%"></div>
+                </div>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-bar__header">
+                  <span class="skill-bar__name">Photo Editing</span>
+                </div>
+                <div class="skill-bar__track">
+                  <div class="skill-bar__fill" data-width="80%"></div>
+                </div>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-bar__header">
+                  <span class="skill-bar__name">Social Media Content</span>
+                </div>
+                <div class="skill-bar__track">
+                  <div class="skill-bar__fill" data-width="88%"></div>
+                </div>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-bar__header">
+                  <span class="skill-bar__name">Motion Graphics</span>
+                </div>
+                <div class="skill-bar__track">
+                  <div class="skill-bar__fill" data-width="70%"></div>
+                </div>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-bar__header">
+                  <span class="skill-bar__name">3D Design</span>
+                </div>
+                <div class="skill-bar__track">
+                  <div class="skill-bar__fill" data-width="60%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="section-header reveal">
+              <span class="label">Software</span>
+              <h2 class="heading-2">Tools</h2>
+              <p class="section-header__subtitle" style="font-size: var(--text-sm);">
+                Edit in <a href="js/config.js" style="color:var(--accent);">js/projects.js</a> to update.
+              </p>
+            </div>
+
+            <div class="tools-grid reveal">
+              <span class="tool-badge">Adobe Photoshop</span>
+              <span class="tool-badge">Adobe Premiere Pro</span>
+              <span class="tool-badge">Adobe Illustrator</span>
+              <span class="tool-badge">Adobe After Effects</span>
+              <span class="tool-badge">DaVinci Resolve</span>
+              <span class="tool-badge">Blender</span>
+              <span class="tool-badge">Canva</span>
+              <span class="tool-badge">CapCut</span>
+              <span class="tool-badge">Adobe Lightroom</span>
+              <span class="tool-badge">Affinity Designer</span>
+              <span class="tool-badge">Figma</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SERVICES ───────────────────────────────────────── -->
+    <section class="section" aria-label="Services">
+      <div class="container">
+
+        <div class="section-header reveal">
+          <span class="label">What I Offer</span>
+          <h2 class="heading-2">Services</h2>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <div class="service-card__icon" aria-hidden="true">🎨</div>
+            <h3 class="service-card__title">Graphic Design</h3>
+            <p class="service-card__desc">
+              Eye-catching visual design for digital platforms and campaigns.
+            </p>
+            <ul class="service-card__list" role="list">
+              <li class="service-card__item">Social media posts & carousels</li>
+              <li class="service-card__item">Posters & digital advertisements</li>
+              <li class="service-card__item">YouTube thumbnails</li>
+              <li class="service-card__item">Brand identity & logos</li>
+              <li class="service-card__item">Podcast cover art</li>
+            </ul>
+          </article>
+
+          <article class="service-card reveal reveal--delay-1">
+            <div class="service-card__icon" aria-hidden="true">🎬</div>
+            <h3 class="service-card__title">Video Editing</h3>
+            <p class="service-card__desc">
+              Professionally edited video content built for engagement.
+            </p>
+            <ul class="service-card__list" role="list">
+              <li class="service-card__item">Reels, TikToks, YouTube Shorts</li>
+              <li class="service-card__item">Long-form YouTube videos</li>
+              <li class="service-card__item">Podcast video clips</li>
+              <li class="service-card__item">Social media videos</li>
+              <li class="service-card__item">Colour grading</li>
+            </ul>
+          </article>
+
+          <article class="service-card reveal reveal--delay-2">
+            <div class="service-card__icon" aria-hidden="true">✦</div>
+            <h3 class="service-card__title">Additional</h3>
+            <p class="service-card__desc">
+              Complementary creative services to elevate your brand.
+            </p>
+            <ul class="service-card__list" role="list">
+              <li class="service-card__item">Photo editing & retouching</li>
+              <li class="service-card__item">Basic motion graphics</li>
+              <li class="service-card__item">3D product visualisation</li>
+              <li class="service-card__item">Content planning support</li>
+            </ul>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── EXPERIENCE ─────────────────────────────────────── -->
+    <section class="section section--alt" aria-label="Experience and education">
+      <div class="container">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap: clamp(2rem,5vw,5rem); align-items:start;">
+
+          <!-- Experience -->
+          <div>
+            <div class="section-header reveal">
+              <span class="label">Background</span>
+              <h2 class="heading-2">Experience</h2>
+            </div>
+
+            <div>
+              <div class="experience-item reveal">
+                <div class="experience-date">2025 — Present</div>
+                <div>
+                  <div class="experience-role">Freelance Graphic Designer & Video Editor</div>
+                  <div class="experience-company">Independent</div>
+                  <p class="experience-desc">
+                    Working with brands, content creators, and small businesses on visual design and video editing projects.
+                  </p>
+                </div>
+              </div>
+              <!-- Add more experience entries here -->
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div>
+            <div class="section-header reveal">
+              <span class="label">Learning</span>
+              <h2 class="heading-2">Education</h2>
+            </div>
+
+            <div>
+              <div class="experience-item reveal">
+                <div class="experience-date">Update Year</div>
+                <div>
+                  <div class="experience-role">Your Degree / Course</div>
+                  <div class="experience-company">Your Institution</div>
+                  <p class="experience-desc">
+                    Add your educational background here.
+                  </p>
+                </div>
+              </div>
+              <!-- Add more education entries here -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ────────────────────────────────────────────── -->
+    <section class="cta-banner reveal" aria-label="Call to action">
+      <h2 class="cta-banner__title">
+        Ready to collaborate?
+      </h2>
+      <p class="cta-banner__subtitle">
+        Let's build something you're proud to share.
+      </p>
+      <div class="cta-banner__actions">
+        <a href="contact.html" class="btn btn--primary btn--lg" id="about-contact-cta">
+          Get in Touch <span class="btn__arrow">→</span>
+        </a>
+        <a href="work.html" class="btn btn--ghost btn--lg" id="about-work-link">See My Work</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ──────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <div class="footer__brand-name" data-footer-name>Thevindu Kottege</div>
+          <div class="footer__brand-title" data-footer-title>Graphic Designer & Video Editor</div>
+          <div class="social-links" style="margin-top: 1.25rem;" data-footer-social></div>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-heading">Navigate</div>
+          <div class="footer__links">
+            <a href="work.html" class="footer__link">Work</a>
+            <a href="about.html" class="footer__link">About</a>
+            <a href="contact.html" class="footer__link">Contact</a>
+            <a href="#" class="footer__link" data-resume>View Resume</a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-heading">Get In Touch</div>
+          <div class="footer__links">
+            <a href="#" class="footer__link" data-email data-email-text>hello@yourname.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copyright" data-footer-year>© 2026 Thevindu Kottege</span>
+        <button class="back-to-top" aria-label="Back to top">Back to top ↑</button>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

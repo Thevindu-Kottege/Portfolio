@@ -1,0 +1,138 @@
+/* ============================================================
+   ANIMATIONS — css/animations.css
+   All keyframes and animation utility classes
+   ============================================================ */
+
+/* ── Keyframes ───────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Scroll Reveal (controlled by JS via IntersectionObserver) ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity var(--duration-slower) var(--ease-out),
+    transform var(--duration-slower) var(--ease-out);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal--delay-1 { transition-delay: 100ms; }
+.reveal--delay-2 { transition-delay: 200ms; }
+.reveal--delay-3 { transition-delay: 300ms; }
+.reveal--delay-4 { transition-delay: 400ms; }
+.reveal--delay-5 { transition-delay: 500ms; }
+
+.reveal--from-left {
+  transform: translateX(-24px);
+}
+.reveal--from-left.revealed {
+  transform: translateX(0);
+}
+
+.reveal--from-right {
+  transform: translateX(24px);
+}
+.reveal--from-right.revealed {
+  transform: translateX(0);
+}
+
+.reveal--scale {
+  transform: scale(0.96);
+}
+.reveal--scale.revealed {
+  transform: scale(1);
+}
+
+/* ── Page Transition ─────────────────────────────────────── */
+.page-transition {
+  animation: fadeIn var(--duration-slow) var(--ease-out) both;
+}
+
+/* ── Hero Entrance (staggered, auto-plays) ───────────────── */
+.hero-animate-1 {
+  animation: fadeUp 0.7s var(--ease-out) 0.1s both;
+}
+.hero-animate-2 {
+  animation: fadeUp 0.7s var(--ease-out) 0.25s both;
+}
+.hero-animate-3 {
+  animation: fadeUp 0.7s var(--ease-out) 0.4s both;
+}
+.hero-animate-4 {
+  animation: fadeUp 0.7s var(--ease-out) 0.55s both;
+}
+.hero-animate-5 {
+  animation: fadeUp 0.7s var(--ease-out) 0.7s both;
+}
+
+/* ── Skeleton Loading ────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-card) 25%,
+    var(--bg-elevated) 50%,
+    var(--bg-card) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite;
+  border-radius: var(--radius-md);
+}
+
+/* ── Filter Animation ────────────────────────────────────── */
+.filter-exit {
+  opacity: 0;
+  transform: scale(0.95);
+  transition:
+    opacity 0.2s var(--ease-in),
+    transform 0.2s var(--ease-in);
+}
+
+.filter-enter {
+  animation: scaleIn 0.35s var(--ease-out) both;
+}

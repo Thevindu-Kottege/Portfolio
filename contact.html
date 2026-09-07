@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Thevindu Kottege</title>
+  <meta name="description" content="Get in touch with Thevindu Kottege — Graphic Designer and Video Editor. Available for freelance projects, collaborations and creative work.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact — Thevindu Kottege">
+  <meta property="og:description" content="Have a project in mind? Get in touch with Thevindu Kottege — Graphic Designer and Video Editor.">
+  <meta property="og:url" content="https://yourname.com/contact.html">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .spin-icon { animation: spin 0.8s linear infinite; display: inline-block; }
+  </style>
+</head>
+<body class="page-transition">
+
+  <!-- ── NAVIGATION ─────────────────────────────────────── -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Thevindu Kottege — Home">
+        <span class="nav__logo-name" data-site-name>Thevindu Kottege</span>
+        <span class="nav__logo-title">Designer & Video Editor</span>
+      </a>
+      <div class="nav__links">
+        <a href="work.html" class="nav__link">Work</a>
+        <a href="about.html" class="nav__link">About</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+      </div>
+      <div class="nav__cta">
+        <a href="contact.html" class="btn btn--primary btn--sm">Let's Work Together</a>
+        <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav__mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+      <a href="work.html" class="nav__mobile-link">Work</a>
+      <a href="about.html" class="nav__mobile-link">About</a>
+      <a href="contact.html" class="nav__mobile-link">Contact</a>
+      <a href="contact.html" class="btn btn--primary" style="margin-top: 1rem;">Let's Work Together</a>
+      <div class="nav__mobile-social" data-footer-social></div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ── CONTACT MAIN ───────────────────────────────────── -->
+    <section
+      class="section"
+      style="padding-top: calc(var(--nav-height) + clamp(3rem, 6vw, 5rem));"
+      aria-label="Contact"
+    >
+      <div class="container">
+        <div class="contact-layout">
+
+          <!-- ── Left: Info ──────────────────────────────── -->
+          <div>
+            <span class="label hero-animate-1">Get in Touch</span>
+            <h1 class="contact-info__title hero-animate-2">
+              Let's Work<br>Together.
+            </h1>
+            <p class="contact-info__desc hero-animate-3">
+              Have a project in mind? I'd love to hear about it. Send me a message and I'll get back to you as soon as possible.
+            </p>
+
+            <span class="label" style="display:block; margin-bottom:0.75rem; hero-animate-3">Email</span>
+            <a
+              href="mailto:hello@yourname.com"
+              class="contact-email-link hero-animate-4"
+              data-contact-email
+              id="contact-email-link"
+            >
+              hello@yourname.com
+            </a>
+
+            <div class="hero-animate-4">
+              <span class="label" style="display:block; margin-bottom:1rem;">Find me online</span>
+              <div class="social-links" data-contact-social>
+                <!-- Populated by main.js from CONFIG -->
+              </div>
+            </div>
+
+            <!-- Availability note -->
+            <div style="
+              margin-top: 2.5rem;
+              padding: 1rem 1.25rem;
+              background: var(--accent-muted);
+              border: 1px solid var(--border-accent);
+              border-radius: var(--radius-md);
+              display: flex;
+              align-items: center;
+              gap: 0.75rem;
+            " class="hero-animate-5">
+              <span style="width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;animation:pulse 2s infinite;" aria-hidden="true"></span>
+              <span style="font-size: var(--text-sm); color: var(--text-secondary);">
+                Currently <strong style="color:var(--text-primary)">available</strong> for new projects.
+              </span>
+            </div>
+          </div>
+
+          <!-- ── Right: Form ─────────────────────────────── -->
+          <div class="hero-animate-3">
+            <form
+              id="contact-form"
+              novalidate
+              aria-label="Contact form"
+            >
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="name">
+                    Name <span class="required" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    class="form-input"
+                    id="name"
+                    name="name"
+                    placeholder="Your full name"
+                    autocomplete="name"
+                    data-required="true"
+                    aria-required="true"
+                    aria-describedby="name-error"
+                  >
+                  <span class="form-error" id="name-error" role="alert">This field is required.</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="email">
+                    Email <span class="required" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    class="form-input"
+                    id="email"
+                    name="email"
+                    placeholder="your@email.com"
+                    autocomplete="email"
+                    data-required="email"
+                    aria-required="true"
+                    aria-describedby="email-error"
+                  >
+                  <span class="form-error" id="email-error" role="alert">Please enter a valid email address.</span>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="project_type">
+                    Project Type <span class="required" aria-hidden="true">*</span>
+                  </label>
+                  <select
+                    class="form-select"
+                    id="project_type"
+                    name="project_type"
+                    data-required="true"
+                    aria-required="true"
+                    aria-describedby="project_type-error"
+                  >
+                    <option value="" disabled selected>Select a project type</option>
+                    <option value="graphic-design">Graphic Design</option>
+                    <option value="video-editing">Video Editing</option>
+                    <option value="photo-editing">Photo Editing</option>
+                    <option value="social-media">Social Media Content</option>
+                    <option value="branding">Brand Identity</option>
+                    <option value="motion-graphics">Motion Graphics</option>
+                    <option value="3d-design">3D Design</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <span class="form-error" id="project_type-error" role="alert">Please select a project type.</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="budget">
+                    Budget <span style="color: var(--text-tertiary); font-weight: 400; letter-spacing:0;">(optional)</span>
+                  </label>
+                  <select class="form-select" id="budget" name="budget">
+                    <option value="" selected>Prefer not to say</option>
+                    <option value="under-100">Under $100</option>
+                    <option value="100-300">$100 – $300</option>
+                    <option value="300-500">$300 – $500</option>
+                    <option value="500-1000">$500 – $1,000</option>
+                    <option value="1000-plus">$1,000+</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="message">
+                  Message <span class="required" aria-hidden="true">*</span>
+                </label>
+                <textarea
+                  class="form-textarea"
+                  id="message"
+                  name="message"
+                  placeholder="Tell me about your project — what you need, timeline, and any details that would help me understand your vision."
+                  rows="6"
+                  data-required="true"
+                  aria-required="true"
+                  aria-describedby="message-error"
+                ></textarea>
+                <span class="form-error" id="message-error" role="alert">Please include a message.</span>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--lg" id="contact-submit" style="width:100%;">
+                Send Message <span class="btn__arrow">→</span>
+              </button>
+
+              <!-- Success state -->
+              <div class="form-message form-message--success" id="form-success" role="status">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Message sent! I'll be in touch soon.
+              </div>
+
+              <!-- Error state -->
+              <div class="form-message form-message--error" id="form-error" role="alert">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                Something went wrong. Please try emailing me directly.
+              </div>
+
+              <p style="margin-top: 1rem; font-size: var(--text-xs); color: var(--text-tertiary); text-align:center;">
+                I typically respond within 24–48 hours.
+              </p>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ──────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <div class="footer__brand-name" data-footer-name>Thevindu Kottege</div>
+          <div class="footer__brand-title" data-footer-title>Graphic Designer & Video Editor</div>
+          <div class="social-links" style="margin-top: 1.25rem;" data-footer-social></div>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-heading">Navigate</div>
+          <div class="footer__links">
+            <a href="work.html" class="footer__link">Work</a>
+            <a href="about.html" class="footer__link">About</a>
+            <a href="contact.html" class="footer__link">Contact</a>
+            <a href="#" class="footer__link" data-resume>View Resume</a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-heading">Get In Touch</div>
+          <div class="footer__links">
+            <a href="#" class="footer__link" data-email data-email-text>hello@yourname.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copyright" data-footer-year>© 2026 Thevindu Kottege</span>
+        <button class="back-to-top" aria-label="Back to top">Back to top ↑</button>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>

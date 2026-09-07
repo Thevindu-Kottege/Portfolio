@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thevindu Kottege — Graphic Designer & Video Editor</title>
+  <meta name="description" content="Portfolio of Thevindu Kottege — Graphic Designer and Video Editor creating visual content for brands, creators and digital media.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Thevindu Kottege — Graphic Designer & Video Editor">
+  <meta property="og:description" content="Portfolio of Thevindu Kottege — Graphic Designer and Video Editor creating visual content for brands, creators and digital media.">
+  <meta property="og:url" content="https://yourname.com">
+  <meta property="og:image" content="assets/images/og-image.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="page-transition">
+
+  <!-- ── NAVIGATION ─────────────────────────────────────── -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Thevindu Kottege — Home">
+        <span class="nav__logo-name" data-site-name>Thevindu Kottege</span>
+        <span class="nav__logo-title">Designer & Video Editor</span>
+      </a>
+
+      <div class="nav__links">
+        <a href="work.html" class="nav__link">Work</a>
+        <a href="about.html" class="nav__link">About</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+      </div>
+
+      <div class="nav__cta">
+        <a href="contact.html" class="btn btn--primary btn--sm" id="nav-cta">Let's Work Together</a>
+        <button
+          class="nav__hamburger"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          id="hamburger-btn"
+        >
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="nav__mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+      <a href="work.html" class="nav__mobile-link">Work</a>
+      <a href="about.html" class="nav__mobile-link">About</a>
+      <a href="contact.html" class="nav__mobile-link">Contact</a>
+      <a href="contact.html" class="btn btn--primary" style="margin-top: 1rem;">Let's Work Together</a>
+      <div class="nav__mobile-social" data-footer-social></div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ── HERO ───────────────────────────────────────────── -->
+    <section class="hero" aria-label="Introduction">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__content">
+
+        <div class="hero__eyebrow hero-animate-1">
+          <span class="hero__eyebrow-dot" aria-hidden="true"></span>
+          <span class="label">Available for freelance work</span>
+        </div>
+
+        <h1 class="hero__name hero-animate-2" data-site-name>Thevindu Kottege</h1>
+
+        <p class="hero__title hero-animate-3">
+          Graphic Designer<br>
+          &amp; <em>Video Editor</em>
+        </p>
+
+        <p class="hero__tagline hero-animate-4">
+          Creating visual content for brands, creators and digital media.
+        </p>
+
+        <div class="hero__actions hero-animate-5">
+          <a href="work.html" class="btn btn--primary btn--lg" id="hero-view-work">
+            View My Work <span class="btn__arrow">→</span>
+          </a>
+          <a href="contact.html" class="btn btn--ghost btn--lg" id="hero-contact">
+            Let's Work Together
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── FEATURED WORK ───────────────────────────────────── -->
+    <section class="section" aria-label="Featured projects">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="label">Selected Work</span>
+          <h2 class="section-header__title heading-1">
+            Projects I'm<br>proud of.
+          </h2>
+          <p class="section-header__subtitle">
+            A curated selection of design, video and visual projects.
+          </p>
+        </div>
+
+        <div class="project-grid project-grid--featured" id="featured-grid" aria-label="Featured projects grid">
+          <!-- Populated by home.js -->
+          <div class="skeleton" style="grid-column:span 7; height:420px; border-radius:12px;"></div>
+          <div class="skeleton" style="grid-column:span 5; height:420px; border-radius:12px;"></div>
+          <div class="skeleton" style="grid-column:span 4; height:320px; border-radius:12px;"></div>
+          <div class="skeleton" style="grid-column:span 4; height:320px; border-radius:12px;"></div>
+          <div class="skeleton" style="grid-column:span 4; height:320px; border-radius:12px;"></div>
+          <div class="skeleton" style="grid-column:span 12; height:280px; border-radius:12px;"></div>
+        </div>
+
+        <div style="text-align:center; margin-top: clamp(2rem, 4vw, 3.5rem);">
+          <a href="work.html" class="btn btn--ghost btn--lg reveal" id="view-all-work">
+            View All Work <span class="btn__arrow">→</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── SERVICES ───────────────────────────────────────── -->
+    <section class="section section--alt" aria-label="Services">
+      <div class="container">
+
+        <div class="section-header reveal">
+          <span class="label">What I Do</span>
+          <h2 class="section-header__title heading-1">Services</h2>
+          <p class="section-header__subtitle">
+            From social media visuals to cinematic video edits — here's how I can help.
+          </p>
+        </div>
+
+        <div class="services-grid">
+
+          <article class="service-card reveal">
+            <div class="service-card__icon" aria-hidden="true">🎨</div>
+            <h3 class="service-card__title">Graphic Design</h3>
+            <p class="service-card__desc">
+              Visual design crafted for impact — from social media content to full digital campaigns.
+            </p>
+            <ul class="service-card__list" role="list">
+              <li class="service-card__item">Social media posts & carousels</li>
+              <li class="service-card__item">Posters & digital advertisements</li>
+              <li class="service-card__item">YouTube thumbnails</li>
+              <li class="service-card__item">Brand identity & logos</li>
+            </ul>
+          </article>
+
+          <article class="service-card reveal reveal--delay-1">
+            <div class="service-card__icon" aria-hidden="true">🎬</div>
+            <h3 class="service-card__title">Video Editing</h3>
+            <p class="service-card__desc">
+              Engaging video content edited for social media, YouTube, podcasts, and beyond.
+            </p>
+            <ul class="service-card__list" role="list">
+              <li class="service-card__item">Short-form: Reels, TikToks, Shorts</li>
+              <li class="service-card__item">YouTube video editing</li>
+              <li class="service-card__item">Podcast video clips</li>
+              <li class="service-card__item">Social media video content</li>
+            </ul>
+          </article>
+
+          <article class="service-card reveal reveal--delay-2">
+            <div class="service-card__icon" aria-hidden="true">✦</div>
+            <h3 class="service-card__title">Additional Services</h3>
+            <p class="service-card__desc">
+              Supporting creative services that elevate the full picture of your brand.
+            </p>
+            <ul class="service-card__list" role="list">
+              <li class="service-card__item">Photo editing & retouching</li>
+              <li class="service-card__item">Basic motion graphics</li>
+              <li class="service-card__item">3D visual work</li>
+              <li class="service-card__item">Content strategy support</li>
+            </ul>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── CTA BANNER ──────────────────────────────────────── -->
+    <section class="cta-banner reveal" aria-label="Call to action">
+      <h2 class="cta-banner__title">
+        Let's create something<br><em style="color: var(--accent); font-style:normal;">great together.</em>
+      </h2>
+      <p class="cta-banner__subtitle">
+        Have a project in mind? I'd love to hear about it.
+      </p>
+      <div class="cta-banner__actions">
+        <a href="contact.html" class="btn btn--primary btn--lg" id="cta-contact-btn">
+          Get in Touch <span class="btn__arrow">→</span>
+        </a>
+        <a href="work.html" class="btn btn--ghost btn--lg" id="cta-work-btn">
+          See My Work
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ──────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <div class="footer__brand-name" data-footer-name>Thevindu Kottege</div>
+          <div class="footer__brand-title" data-footer-title>Graphic Designer & Video Editor</div>
+          <div class="social-links" style="margin-top: 1.25rem;" data-footer-social></div>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-heading">Navigate</div>
+          <div class="footer__links">
+            <a href="work.html" class="footer__link">Work</a>
+            <a href="about.html" class="footer__link">About</a>
+            <a href="contact.html" class="footer__link">Contact</a>
+            <a href="#" class="footer__link" data-resume>View Resume</a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-heading">Get In Touch</div>
+          <div class="footer__links">
+            <a href="#" class="footer__link" data-email data-email-text>hello@yourname.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copyright" data-footer-year>© 2026 Thevindu Kottege</span>
+        <button class="back-to-top" aria-label="Back to top">
+          Back to top ↑
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>
