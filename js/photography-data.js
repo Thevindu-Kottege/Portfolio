@@ -129,18 +129,18 @@ const PHOTOGRAPHY_PHOTOS = [
   {
     id: 1,
     title: "Monsoon Reflections on Lotus Road",
-    category: "Street",
-    seriesId: "colombo-after-rain",
-    date: "October 2025",
-    location: "Fort, Colombo",
+    category: "Nature",
+    seriesId: "quiet-places",
+    date: "March 2026",
+    location: "Nugegoda, Colombo",
     // You can use a Google Drive share URL, ID, or local file:
-    image: "assets/images/proj1_sports_campaign.jpg",
-    aspectRatio: "wide",
-    description: "Warm brake lights mirroring on the wet asphalt right after the evening monsoon cleared.",
+    image: "https://drive.google.com/file/d/1tgTOnod-mBTrsRwFJqSQLx6Y1cQ8qT1E/view?usp=drive_link",
+    aspectRatio: "portrait",
+    description: "Warm sun shining through grasses.",
     exif: {
-      camera: "Sony A7 IV",
-      lens: "FE 35mm f/1.4 GM",
-      settings: "1/160s · f/1.8 · ISO 640",
+      camera: "Apple iPhone 11",
+      lens: "FE 26mm f/1.8 GM",
+      settings: "1/8197s · f/1.8 · ISO 32",
     },
     featured: true,
   },
@@ -289,4 +289,3 @@ if (typeof window !== 'undefined') {
   window.getPhotographyPhotos = getPhotographyPhotos;
   window.getSeriesPhotos = getSeriesPhotos;
 }
-
