@@ -62,7 +62,7 @@ Open `js/config.js` and update your details:
 const CONFIG = {
   name: "Thevindu Kottege",
   title: "Graphic Designer & Video Editor",
-  email: "hello@yourname.com",
+  email: "hello@thevindukottege.com",
   social: {
     behance: "https://www.behance.net/yourname",
     linkedin: "https://www.linkedin.com/in/yourname",
