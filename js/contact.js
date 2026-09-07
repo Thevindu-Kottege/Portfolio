@@ -87,20 +87,23 @@ function initContactForm() {
  * - EmailJS: emailjs.send(serviceId, templateId, data)
  */
 async function handleFormSubmit(data, formElement) {
-  // ── OPTION A: Formspree (uncomment and replace YOUR_FORM_ID)
-  // const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-  //   body: JSON.stringify(data),
-  // });
-  // if (!response.ok) throw new Error('Submission failed');
-  // return response.json();
+  const serviceId = 'service_pg7au8k';
+  const templateId = 'template_3sx48b8';
+  const publicKey = 'Z1A6TfvzrBz_Qre0X'; 
 
-  // ── OPTION B: Netlify Forms (add data-netlify="true" to <form>)
-  // No JS needed — Netlify handles it automatically.
+  try {
+    const response = await emailjs.send(
+      serviceId,
+      templateId,
+      data,
+      publicKey
+    );
 
-  // ── DEFAULT: Simulate success (remove this when connecting to a real backend)
-  return new Promise((resolve) => setTimeout(resolve, 1200));
+    return response;
+  } catch (error) {
+    console.error('EmailJS Error:', error);
+    throw new Error('Failed to send message.');
+  }
 }
 
 /* ── Field validation ────────────────────────────────────── */
