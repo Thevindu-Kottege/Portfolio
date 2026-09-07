@@ -20,11 +20,11 @@ const CONFIG = {
 
   // --- Social Links (set to null to hide) ---
   social: {
-    behance:   "https://www.behance.net/yourname",
-    linkedin:  "https://www.linkedin.com/in/yourname",
-    instagram: "https://www.instagram.com/yourname",
-    youtube:   null,
-    twitter:   null,
+    behance:   "https://www.behance.net/thevindukottege",
+    linkedin:  "https://www.linkedin.com/in/thevindu-kottege/",
+    instagram: "https://www.instagram.com/thevindu_kottege/",
+    youtube:   "https://www.youtube.com/@thevindukottege8799",
+    twitter:   "https://x.com/Thevindu_k",
   },
 
   // --- Resume / CV ---
