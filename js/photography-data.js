@@ -128,7 +128,7 @@ const PHOTOGRAPHY_SERIES = [
 const PHOTOGRAPHY_PHOTOS = [
   {
     id: 1,
-    title: "Monsoon Reflections on Lotus Road",
+    title: "Golden grasses along the road",
     category: "Nature",
     seriesId: "quiet-places",
     date: "March 2026",
