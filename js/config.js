@@ -10,13 +10,13 @@
 const CONFIG = {
   // --- Personal Info ---
   name: "Thevindu Kottege",
-  nameShort: "YN",
+  nameShort: "TK",
   title: "Graphic Designer & Video Editor",
   tagline: "Creating visual content for brands, creators and digital media.",
-  location: "Your City, Country",
+  location: "Nugegoda, Sri Lanka",
 
   // --- Contact ---
-  email: "hello@yourname.com",
+  email: "thevindukottege@gmail.com",
 
   // --- Social Links (set to null to hide) ---
   social: {
@@ -32,7 +32,7 @@ const CONFIG = {
   resumeUrl: "#", // e.g. "assets/resume.pdf"
 
   // --- SEO ---
-  siteUrl: "https://yourname.com",
+  siteUrl: "https://thevindukottege.vercel.app",
   metaDescription: "Portfolio of Thevindu Kottege — Graphic Designer and Video Editor creating visual content for brands, creators and digital media.",
   ogImage: "assets/images/og-image.jpg",
 
