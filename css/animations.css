@@ -136,3 +136,120 @@
 .filter-enter {
   animation: scaleIn 0.35s var(--ease-out) both;
 }
+
+/* ── Cross-Document View Transitions (Modern Browsers) ───── */
+@view-transition {
+  navigation: auto;
+}
+
+/* ── Continuous Theme Morph Transitions ──────────────────── */
+@keyframes morphDarkToLightKeyframes {
+  0% {
+    background-color: #0e0e0f;
+    color: #f0ede8;
+  }
+  25% {
+    background-color: #242220;
+    color: #e2ded7;
+  }
+  50% {
+    background-color: #4a453e;
+    color: #dedbd4;
+  }
+  75% {
+    background-color: #bab1a2;
+    color: #282522;
+  }
+  100% {
+    background-color: #f8f6f0;
+    color: #1a1917;
+  }
+}
+
+@keyframes morphLightToDarkKeyframes {
+  0% {
+    background-color: #f8f6f0;
+    color: #1a1917;
+  }
+  25% {
+    background-color: #bab1a2;
+    color: #282522;
+  }
+  50% {
+    background-color: #4a453e;
+    color: #dedbd4;
+  }
+  75% {
+    background-color: #242220;
+    color: #e2ded7;
+  }
+  100% {
+    background-color: #0e0e0f;
+    color: #f0ede8;
+  }
+}
+
+@keyframes morphEnterLightKeyframes {
+  0% {
+    background-color: #bab1a2;
+    color: #282522;
+    opacity: 0.88;
+  }
+  50% {
+    background-color: #ede7dd;
+    color: #1f1e1c;
+    opacity: 0.96;
+  }
+  100% {
+    background-color: #f8f6f0;
+    color: #1a1917;
+    opacity: 1;
+  }
+}
+
+@keyframes morphEnterDarkKeyframes {
+  0% {
+    background-color: #3e3933;
+    color: #dedbd4;
+    opacity: 0.88;
+  }
+  50% {
+    background-color: #1a1919;
+    color: #e8e4dc;
+    opacity: 0.96;
+  }
+  100% {
+    background-color: #0e0e0f;
+    color: #f0ede8;
+    opacity: 1;
+  }
+}
+
+/* Morph Active State Classes */
+body.is-morphing-to-light {
+  animation: morphDarkToLightKeyframes 0.38s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+  pointer-events: none;
+}
+
+body.is-morphing-to-light * {
+  border-color: rgba(60, 55, 50, 0.15) !important;
+  transition: color 0.38s ease, border-color 0.38s ease, background-color 0.38s ease !important;
+}
+
+body.is-morphing-to-dark {
+  animation: morphLightToDarkKeyframes 0.38s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+  pointer-events: none;
+}
+
+body.is-morphing-to-dark * {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  transition: color 0.38s ease, border-color 0.38s ease, background-color 0.38s ease !important;
+}
+
+body.is-morphing-enter-light {
+  animation: morphEnterLightKeyframes 0.42s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+}
+
+body.is-morphing-enter-dark {
+  animation: morphEnterDarkKeyframes 0.42s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+}

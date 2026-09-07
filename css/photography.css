@@ -29,7 +29,13 @@ body.theme-light {
   --shadow-lg:  0 16px 48px rgba(26, 25, 23, 0.1);
   --shadow-xl:  0 24px 72px rgba(26, 25, 23, 0.14);
 
+  /* Light-theme ambient depth gradient (prevents flat white appearance) */
   background-color: var(--bg-primary);
+  background-image:
+    radial-gradient(ellipse at 80% 10%, rgba(140, 109, 72, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 15% 55%, rgba(195, 185, 170, 0.15) 0%, transparent 55%),
+    linear-gradient(to bottom, #f8f6f0 0%, #f6f3eb 50%, #f2eee5 100%);
+  background-attachment: fixed;
   color: var(--text-primary);
 }
 
@@ -100,11 +106,61 @@ body.theme-light .nav__mobile-link:hover {
   transform: translateY(-1px);
 }
 
-/* ── Editorial Hero ────────────────────────────────────────── */
+/* ── Editorial Hero with Depth Atmosphere ──────────────────── */
 .editorial-hero {
   padding-top: calc(var(--nav-height) + clamp(2rem, 5vw, 4rem));
   padding-bottom: clamp(3rem, 6vw, 5rem);
   position: relative;
+  overflow: hidden;
+}
+
+/* Layer 1: Atmospheric hero background media */
+.editorial-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.editorial-hero__bg-media {
+  position: absolute;
+  inset: -6% -6%;
+  width: 112%;
+  height: 112%;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.editorial-hero__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  opacity: var(--photo-hero-bg-opacity, 0.12);
+  filter: sepia(18%) saturate(75%) contrast(96%) brightness(104%);
+  transition: opacity var(--duration-slower) ease;
+}
+
+/* Layer 2: Soft warm ivory wash */
+.editorial-hero__bg-wash {
+  position: absolute;
+  inset: 0;
+  background: rgba(248, 246, 240, 0.74);
+}
+
+/* Layer 3: Edge & bottom gradient fades */
+.editorial-hero__bg-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 40%, transparent 15%, var(--bg-primary) 85%),
+    linear-gradient(to bottom, transparent 35%, var(--bg-primary) 98%);
+}
+
+.editorial-hero__container {
+  position: relative;
+  z-index: 1;
 }
 
 .editorial-hero__header {

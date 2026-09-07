@@ -28,6 +28,9 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/photography.css">
+
+  <!-- Early Theme Morph Initialization -->
+  <script src="js/theme-morph.js"></script>
 </head>
 <body class="theme-light page-transition">
 
@@ -79,7 +82,23 @@
 
     <!-- ── EDITORIAL HERO ─────────────────────────────────── -->
     <header class="editorial-hero" aria-label="Photography introduction">
-      <div class="container">
+      <!-- Atmospheric Background Layer for Light Theme Depth -->
+      <div class="editorial-hero__bg" aria-hidden="true">
+        <div class="editorial-hero__bg-media">
+          <img
+            src="assets/images/proj4_podcast_identity.jpg"
+            alt=""
+            class="editorial-hero__bg-img"
+            id="editorial-hero-bg-img"
+            loading="eager"
+            decoding="async"
+          >
+        </div>
+        <div class="editorial-hero__bg-wash"></div>
+        <div class="editorial-hero__bg-gradient"></div>
+      </div>
+
+      <div class="container editorial-hero__container">
 
         <div class="editorial-hero__header">
           <div class="editorial-hero__meta-top">
@@ -193,49 +212,54 @@
 
   </main>
 
-  <!-- ── FULLSCREEN LIGHTBOX VIEWER ────────────────────────── -->
-  <dialog class="photo-lightbox" id="photo-lightbox" aria-label="Photograph viewer" aria-hidden="true">
-    <div class="photo-lightbox__topbar">
-      <span class="photo-lightbox__counter" id="lightbox-counter">1 / 1</span>
-      <div class="photo-lightbox__actions">
-        <button class="photo-lightbox__btn" id="lightbox-close" aria-label="Close viewer (ESC)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
+  <!-- ── FULLSCREEN LIGHTBOX VIEWER (Root-level modal) ──────── -->
+  <div class="photo-lightbox" id="photo-lightbox" role="dialog" aria-modal="true" aria-label="Photograph viewer" aria-hidden="true">
+    <div class="photo-lightbox__backdrop" id="lightbox-backdrop"></div>
+
+    <div class="photo-lightbox__container">
+      <div class="photo-lightbox__topbar">
+        <span class="photo-lightbox__counter" id="lightbox-counter">1 / 1</span>
+        <div class="photo-lightbox__actions">
+          <button class="photo-lightbox__btn" id="lightbox-close" aria-label="Close viewer (ESC)" title="Close (ESC)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="photo-lightbox__stage" id="lightbox-stage">
+        <button class="photo-lightbox__arrow photo-lightbox__arrow--prev" id="lightbox-prev" aria-label="Previous photograph (Left Arrow)" title="Previous (Left Arrow)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="photo-lightbox__img-wrap" id="lightbox-img-wrap">
+          <div class="photo-lightbox__spinner" id="lightbox-spinner" aria-hidden="true"></div>
+          <img src="" alt="" class="photo-lightbox__img" id="lightbox-img">
+        </div>
+
+        <button class="photo-lightbox__arrow photo-lightbox__arrow--next" id="lightbox-next" aria-label="Next photograph (Right Arrow)" title="Next (Right Arrow)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
         </button>
       </div>
-    </div>
 
-    <div class="photo-lightbox__stage">
-      <button class="photo-lightbox__arrow photo-lightbox__arrow--prev" id="lightbox-prev" aria-label="Previous photograph (Left Arrow)">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-      </button>
-
-      <div class="photo-lightbox__img-wrap">
-        <img src="" alt="" class="photo-lightbox__img" id="lightbox-img">
-      </div>
-
-      <button class="photo-lightbox__arrow photo-lightbox__arrow--next" id="lightbox-next" aria-label="Next photograph (Right Arrow)">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      </button>
-    </div>
-
-    <div class="photo-lightbox__bottombar">
-      <div class="photo-lightbox__meta-main">
-        <h2 class="photo-lightbox__title" id="lightbox-title">Photograph Title</h2>
-        <span class="photo-lightbox__location" id="lightbox-location">Location</span>
-      </div>
-      <p class="photo-lightbox__desc" id="lightbox-desc">Photograph description</p>
-      <div class="photo-lightbox__exif" id="lightbox-exif">
-        <!-- Injected dynamically -->
+      <div class="photo-lightbox__bottombar">
+        <div class="photo-lightbox__meta-main">
+          <h2 class="photo-lightbox__title" id="lightbox-title">Photograph Title</h2>
+          <span class="photo-lightbox__location" id="lightbox-location">Location</span>
+        </div>
+        <p class="photo-lightbox__desc" id="lightbox-desc">Photograph description</p>
+        <div class="photo-lightbox__exif" id="lightbox-exif">
+          <!-- Injected dynamically -->
+        </div>
       </div>
     </div>
-  </dialog>
+  </div>
 
   <!-- ── FOOTER ──────────────────────────────────────────── -->
   <footer class="footer" role="contentinfo">

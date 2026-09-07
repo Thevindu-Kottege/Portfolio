@@ -43,14 +43,20 @@ const CONFIG = {
   heroBackgroundImage: "assets/images/proj5_product_photo.jpg", // REPLACE_HERE: Put your hero image or Google Drive link
   heroBackgroundOpacity: 0.18, // Configurable opacity (0.0 = invisible, 1.0 = full strength)
 
-  // --- Photography Section Metadata ---
+  // --- Photography Section Configuration ---
   photography: {
     title: "Through My Lens",
     subtitle: "Moments, places and perspectives.",
     description: "A collection of landscapes, places, moments and visual experiments.",
     seoTitle: "Thevindu Kottege — Photography",
     seoDescription: "Photography portfolio of Thevindu Kottege featuring landscapes, places, people and visual stories.",
-    heroImage: "assets/images/proj5_product_photo.jpg", // REPLACE_HERE: Primary editorial hero image (or Google Drive link)
+    heroImage: "assets/images/proj5_product_photo.jpg", // Primary editorial featured photo (or Google Drive link)
+
+    // Atmospheric Hero Background (Light-Theme Depth)
+    // Place a local image path or Google Drive link/ID here.
+    // Recommended opacity: 0.08 - 0.16 (keeps light editorial atmosphere subtle and calm)
+    heroBackgroundImage: "assets/images/proj4_podcast_identity.jpg", // REPLACE_HERE: Photography hero background texture
+    heroBackgroundOpacity: 0.12, // Configurable opacity for light-theme background depth
   },
 
   // --- Copyright ---
