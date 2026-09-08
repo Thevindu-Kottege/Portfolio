@@ -30,6 +30,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     cacheElements();
     renderHero();
+    initHeroBg();
     renderSeries();
     renderFilters();
     renderGallery('All');
@@ -79,6 +80,49 @@
       heroCaptionEl.textContent = heroCfg.featuredCaption;
     }
   }
+
+  /**
+   * Initialise the atmospheric background for the editorial hero.
+   * Loads the configurable background image and applies subtle parallax.
+   */
+  function initHeroBg() {
+    const bgImgEl = document.getElementById('editorial-hero-bg-img');
+    const bgMediaEl = document.querySelector('.editorial-hero__bg-media');
+    if (!bgImgEl) return;
+
+    // Read config
+    const cfg = (typeof CONFIG !== 'undefined' && CONFIG.photography) ? CONFIG.photography : {};
+    const bgSrc = cfg.heroBackgroundImage || '';
+    const bgOpacity = cfg.heroBackgroundOpacity != null ? cfg.heroBackgroundOpacity : 0.12;
+
+    // Apply opacity via CSS custom property
+    document.documentElement.style.setProperty('--photo-hero-bg-opacity', bgOpacity);
+
+    // Load background image
+    if (bgSrc) {
+      const src = typeof ImageUtils !== 'undefined'
+        ? ImageUtils.resolveImageUrl(bgSrc, 'full')
+        : bgSrc;
+      bgImgEl.src = src;
+      bgImgEl.alt = '';
+      bgImgEl.onerror = () => { bgImgEl.style.display = 'none'; };
+    }
+
+    // Subtle parallax on scroll (reduced motion respected)
+    if (bgMediaEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const heroEl = document.querySelector('.editorial-hero');
+      const onScroll = () => {
+        if (!heroEl) return;
+        const rect = heroEl.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+        const progress = -rect.top / (heroEl.offsetHeight || 1);
+        const shift = progress * 30; // max 30px translate
+        bgMediaEl.style.transform = `translate3d(0, ${shift}px, 0)`;
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+  }
+
 
   /**
    * Render Photography Series / Collections
@@ -317,12 +361,9 @@
     if (prevBtn) prevBtn.addEventListener('click', prevPhoto);
     if (nextBtn) nextBtn.addEventListener('click', nextPhoto);
 
-    // Close on backdrop click (outside image and bottombar)
-    lightboxEl.addEventListener('click', (e) => {
-      if (e.target === lightboxEl || e.target.classList.contains('photo-lightbox__stage')) {
-        closeLightbox();
-      }
-    });
+    // Close on backdrop click
+    const backdropEl = document.getElementById('lightbox-backdrop');
+    if (backdropEl) backdropEl.addEventListener('click', closeLightbox);
 
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
@@ -347,9 +388,19 @@
 
     updateLightboxContent();
 
+    // Compensate for scrollbar width to prevent layout shift
+    const sbWidth = window.innerWidth - document.documentElement.clientWidth;
+    if (sbWidth > 0) {
+      document.body.style.paddingRight = sbWidth + 'px';
+    }
+    document.body.style.overflow = 'hidden';
+
     lightboxEl.classList.add('is-open');
     lightboxEl.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+
+    // Move focus into the lightbox for accessibility
+    const closeBtn = document.getElementById('lightbox-close');
+    if (closeBtn) setTimeout(() => closeBtn.focus(), 50);
   }
 
   function closeLightbox() {
@@ -357,6 +408,7 @@
     lightboxEl.classList.remove('is-open');
     lightboxEl.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
   }
 
   function nextPhoto() {
@@ -380,14 +432,18 @@
       ? ImageUtils.resolveImageUrl(photo.image, 'full')
       : photo.image;
 
-    // Fade effect during switch
+    // Fade effect during switch + spinner
     if (lightboxImgEl) {
+      const spinnerEl = document.getElementById('lightbox-spinner');
+
       lightboxImgEl.style.opacity = '0.4';
       lightboxImgEl.style.transform = 'scale(0.98)';
+      if (spinnerEl) spinnerEl.style.display = 'flex';
 
       lightboxImgEl.onload = () => {
         lightboxImgEl.style.opacity = '1';
         lightboxImgEl.style.transform = 'scale(1)';
+        if (spinnerEl) spinnerEl.style.display = 'none';
       };
 
       lightboxImgEl.onerror = () => {
@@ -396,6 +452,7 @@
         }
         lightboxImgEl.style.opacity = '1';
         lightboxImgEl.style.transform = 'scale(1)';
+        if (spinnerEl) spinnerEl.style.display = 'none';
       };
 
       lightboxImgEl.src = fullSrc;
