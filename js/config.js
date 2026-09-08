@@ -57,6 +57,16 @@ const CONFIG = {
     // Recommended opacity: 0.08 - 0.16 (keeps light editorial atmosphere subtle and calm)
     heroBackgroundImage: "assets/images/proj4_podcast_identity.jpg", // REPLACE_HERE: Photography hero background texture
     heroBackgroundOpacity: 0.12, // Configurable opacity for light-theme background depth
+
+    // Photography-specific Resume / CV
+    // Replace with your actual photography PDF link when ready
+    resumeUrl: "#", // e.g. "assets/photography-resume.pdf"
+
+    // Progressive Photo Wall settings
+    gallery: {
+      initialPhotoCount: 12, // Initial number of photos displayed
+      photosPerLoad: 8,      // Photos added on each "See More" click
+    },
   },
 
   // --- Copyright ---
@@ -66,4 +76,8 @@ const CONFIG = {
 // Freeze to prevent accidental mutation
 Object.freeze(CONFIG);
 Object.freeze(CONFIG.social);
-if (CONFIG.photography) Object.freeze(CONFIG.photography);
+if (CONFIG.photography) {
+  Object.freeze(CONFIG.photography);
+  if (CONFIG.photography.gallery) Object.freeze(CONFIG.photography.gallery);
+}
+

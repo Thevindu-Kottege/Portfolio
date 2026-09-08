@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thevindu Kottege — Photography</title>
-  <meta name="description" content="Photography portfolio of Thevindu Kottege featuring landscapes, places, people and visual stories.">
+  <title>Thevindu Kottege — Photography Archive &amp; Wall</title>
+  <meta name="description" content="Progressive editorial photo wall and curated photography gallery of Thevindu Kottege. Exploring coastal horizons, urban geometry, and atmospheric light.">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Thevindu Kottege — Photography">
-  <meta property="og:description" content="Photography portfolio of Thevindu Kottege featuring landscapes, places, people and visual stories.">
-  <meta property="og:url" content="https://thevindukottege.vercel.app/photography.html">
+  <meta property="og:title" content="Thevindu Kottege — Photography Archive">
+  <meta property="og:description" content="Progressive editorial photo wall and curated photography gallery of Thevindu Kottege.">
+  <meta property="og:url" content="https://thevindukottege.vercel.app/photography-gallery.html">
   <meta property="og:image" content="assets/images/proj5_product_photo.jpg">
 
   <!-- Favicon -->
@@ -43,14 +43,14 @@
       </a>
 
       <div class="nav__links">
-        <a href="photography.html" class="nav__link active">Home</a>
-        <a href="photography-gallery.html" class="nav__link">Photography</a>
+        <a href="photography.html" class="nav__link">Home</a>
+        <a href="photography-gallery.html" class="nav__link active">Photography</a>
         <a href="photography-about.html" class="nav__link">About</a>
         <a href="photography-contact.html" class="nav__link">Contact</a>
       </div>
 
       <div class="nav__cta">
-        <a href="index.html" class="nav__cross-link" title="Switch to Design & Video Studio Portfolio">
+        <a href="index.html" class="nav__cross-link" title="Switch to Design &amp; Video Studio Portfolio">
           Explore Design &amp; Video <span>→</span>
         </a>
         <button
@@ -69,8 +69,8 @@
 
     <!-- Mobile menu -->
     <div class="nav__mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
-      <a href="photography.html" class="nav__mobile-link active">Home</a>
-      <a href="photography-gallery.html" class="nav__mobile-link">Photography</a>
+      <a href="photography.html" class="nav__mobile-link">Home</a>
+      <a href="photography-gallery.html" class="nav__mobile-link active">Photography</a>
       <a href="photography-about.html" class="nav__mobile-link">About</a>
       <a href="photography-contact.html" class="nav__mobile-link">Contact</a>
       <a href="index.html" class="btn btn--primary" style="margin-top: 1rem;">Explore Design &amp; Video →</a>
@@ -80,154 +80,50 @@
 
   <main>
 
-    <!-- ── EDITORIAL HERO ─────────────────────────────────── -->
-    <header class="editorial-hero" aria-label="Photography introduction">
-      <!-- Atmospheric Background Layer for Light Theme Depth -->
-      <div class="editorial-hero__bg" aria-hidden="true">
-        <div class="editorial-hero__bg-media">
-          <img
-            src="assets/images/proj4_podcast_identity.jpg"
-            alt=""
-            class="editorial-hero__bg-img"
-            id="editorial-hero-bg-img"
-            loading="eager"
-            decoding="async"
-          >
+    <!-- ── GALLERY HEADER ──────────────────────────────────── -->
+    <header class="page-header" style="padding-top: calc(var(--nav-height) + clamp(2rem, 5vw, 4rem)); padding-bottom: clamp(2rem, 4vw, 3rem); text-align: center;">
+      <div class="container">
+        <div class="hero-animate-1">
+          <span class="label">GALLERY ARCHIVE</span>
         </div>
-        <div class="editorial-hero__bg-wash"></div>
-        <div class="editorial-hero__bg-gradient"></div>
-      </div>
-
-      <div class="container editorial-hero__container">
-
-        <div class="editorial-hero__header">
-          <div class="editorial-hero__meta-top">
-            <span class="label">PHOTOGRAPHY</span>
-            <span style="color: var(--border-hover);">•</span>
-            <span style="font-size: var(--text-xs); color: var(--accent); font-weight: 500; letter-spacing: 0.05em;">VISUAL STORIES</span>
-          </div>
-
-          <h1 class="editorial-hero__title">
-            Through <em>My Lens</em>
-          </h1>
-
-          <p class="editorial-hero__desc">
-            Through my lens — places, moments and perspectives. A personal visual journal exploring coastal horizons, quiet highlands, and urban geometry.
-          </p>
-
-          <div class="editorial-hero__actions">
-            <a href="photography-gallery.html" class="btn btn--primary btn--md">
-              View Photography Archive <span class="btn__arrow">→</span>
-            </a>
-            <a href="#series-section" class="btn btn--ghost btn--md">
-              Curated Series
-            </a>
-          </div>
-        </div>
-
-        <!-- Dominant Featured Editorial Image -->
-        <div class="editorial-hero__media-wrapper reveal">
-          <div class="editorial-hero__media">
-            <img
-              src="assets/images/proj5_product_photo.jpg"
-              alt="Southern Coastline Light Study"
-              class="editorial-hero__img"
-              id="editorial-hero-img"
-              loading="eager"
-            >
-          </div>
-          <div class="editorial-hero__caption">
-            <span class="editorial-hero__caption-left" id="editorial-hero-caption">Southern Coastline — Light Study 01</span>
-            <span style="color: var(--accent); font-weight: 500;">Featured Perspective</span>
-          </div>
-        </div>
-
+        <h1 class="page-header__title hero-animate-2" style="margin: 0.75rem 0 1rem; font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 600;">
+          All Perspectives
+        </h1>
+        <p class="page-header__subtitle hero-animate-3" style="max-width: 620px; margin: 0 auto; color: var(--text-secondary); font-size: var(--text-base); line-height: 1.65;">
+          A progressive editorial photo wall capturing natural atmosphere, architectural rhythm, and quiet moments. Click any photograph to explore in high resolution.
+        </p>
       </div>
     </header>
 
-    <!-- ── FEATURED PHOTOGRAPHY ─────────────────────────────── -->
-    <section class="section" id="featured-section" aria-label="Featured Photography">
+    <!-- ── EDITORIAL GALLERY & PHOTO WALL ──────────────────── -->
+    <section class="section" id="gallery-section" aria-label="Photography gallery wall" style="padding-top: 0;">
       <div class="container">
-        <div class="section-header">
-          <span class="label">Curated Selection</span>
-          <h2 class="section-header__title heading-1">
-            Featured Photographs
-          </h2>
-          <p class="section-header__subtitle">
-            A hand-picked selection of personal favorites capturing natural atmosphere, geometry, and light.
-          </p>
-        </div>
 
-        <!-- Featured Photos Grid -->
-        <div class="photo-gallery" id="featured-photo-gallery" aria-label="Featured photographs">
-          <!-- Injected dynamically by photography.js -->
-        </div>
-
-        <div style="text-align: center; margin-top: 3rem;" class="reveal">
-          <a href="photography-gallery.html" class="btn btn--primary btn--lg">
-            Explore All Photographs <span class="btn__arrow">→</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── CURATED SERIES / STORIES ────────────────────────── -->
-    <section class="series-section" id="series-section" aria-label="Curated Photography Series">
-      <div class="container">
-        <div class="section-header">
-          <span class="label">Curated Series</span>
-          <h2 class="section-header__title heading-1">
-            Stories &amp; Themes
-          </h2>
-          <p class="section-header__subtitle">
-            Thematic photo essays exploring specific places, atmospheric conditions, and urban architecture.
-          </p>
-        </div>
-
-        <div class="series-grid" id="series-grid">
+        <!-- Category Filter Tabs -->
+        <div class="photo-filters" id="photo-filters" role="tablist" aria-label="Filter photography categories">
           <!-- Populated dynamically by photography.js -->
         </div>
-      </div>
-    </section>
 
-    <!-- ── ABOUT PREVIEW ───────────────────────────────────── -->
-    <section class="section section--alt" aria-label="About the photographer preview" style="background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-      <div class="container">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(2rem, 5vw, 4rem); align-items: center;">
-          <div class="reveal">
-            <span class="label">PERSPECTIVE &amp; CRAFT</span>
-            <h2 class="heading-1" style="margin: 0.75rem 0 1.25rem;">
-              Observing the quiet beauty in <em style="color: var(--accent); font-style: italic;">natural light.</em>
-            </h2>
-            <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem;">
-              Photography is where I explore without commercial constraints. Whether waiting for monsoon clouds to part over Colombo’s brutalist streets or catching the low golden skim of light across southern tides, my approach is quiet, patient, and deeply grounded in observation.
-            </p>
-            <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 2rem;">
-              My work as a designer and video editor shapes how I understand balance, visual weight, and frame geometry — but behind the lens, nature and real moments always lead the story.
-            </p>
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-              <a href="photography-about.html" class="btn btn--primary btn--md">
-                Read Photographer Story <span class="btn__arrow">→</span>
-              </a>
-              <a href="#" class="btn btn--ghost btn--md" data-photography-resume>
-                View Photography Resume
-              </a>
-            </div>
-          </div>
-          <div class="reveal" style="position: relative; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md);">
-            <img
-              src="assets/images/proj5_product_photo.jpg"
-              alt="Thevindu Kottege Photography Perspective"
-              style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4/3; display: block;"
-              loading="lazy"
-            >
+        <!-- Progressive Photo Wall Grid -->
+        <div class="photo-gallery" id="photo-gallery" aria-label="Photography grid">
+          <!-- Populated dynamically by photography.js -->
+        </div>
+
+        <!-- Progressive "See More" Pagination Area -->
+        <div class="photo-gallery__load-more" id="see-more-area" style="text-align: center; margin-top: clamp(2.5rem, 6vw, 4rem);">
+          <button class="btn btn--ghost btn--lg" id="see-more-btn">
+            See More Photographs <span id="see-more-counter" style="opacity: 0.7; font-size: var(--text-xs); margin-left: 0.25rem;"></span> <span class="btn__arrow">↓</span>
+          </button>
+          <div id="all-photos-loaded" style="display: none; color: var(--text-tertiary); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 1.25rem; font-weight: 500;">
+            • All photographs viewed •
           </div>
         </div>
+
       </div>
     </section>
 
     <!-- ── CROSS-NAVIGATION BANNER ─────────────────────────── -->
-    <section class="cta-banner reveal" aria-label="Cross-portfolio navigation" style="background: var(--bg-primary);">
+    <section class="cta-banner reveal" aria-label="Cross-portfolio navigation" style="background: var(--bg-secondary); border-top: 1px solid var(--border);">
       <h2 class="cta-banner__title" style="color: var(--text-primary);">
         Looking for my design &amp;<br><em style="color: var(--accent); font-style: italic;">video editing work?</em>
       </h2>
@@ -309,8 +205,8 @@
         <div class="footer__col">
           <div class="footer__col-heading">Navigate</div>
           <div class="footer__links">
-            <a href="photography.html" class="footer__link active">Home</a>
-            <a href="photography-gallery.html" class="footer__link">Photography</a>
+            <a href="photography.html" class="footer__link">Home</a>
+            <a href="photography-gallery.html" class="footer__link active">Photography</a>
             <a href="photography-about.html" class="footer__link">About</a>
             <a href="photography-contact.html" class="footer__link">Contact</a>
             <a href="#" class="footer__link" data-photography-resume>View Photography Resume</a>
@@ -342,4 +238,3 @@
   <script src="js/photography.js"></script>
 </body>
 </html>
-

@@ -22,6 +22,9 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/responsive.css">
 
+  <!-- Early Theme Morph Initialization -->
+  <script src="js/theme-morph.js"></script>
+
   <style>
     .spin-icon { animation: spin 0.8s linear infinite; display: inline-block; }
   </style>
@@ -37,11 +40,13 @@
       </a>
       <div class="nav__links">
         <a href="work.html" class="nav__link">Work</a>
-        <a href="photography.html" class="nav__link">Photography</a>
         <a href="about.html" class="nav__link">About</a>
         <a href="contact.html" class="nav__link">Contact</a>
       </div>
       <div class="nav__cta">
+        <a href="photography.html" class="nav__cross-link" title="Explore Photography Portfolio">
+          Explore Photography <span>→</span>
+        </a>
         <a href="contact.html" class="btn btn--primary btn--sm">Let's Work Together</a>
         <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
           <span class="nav__hamburger-line"></span>
@@ -52,9 +57,9 @@
     </div>
     <div class="nav__mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
       <a href="work.html" class="nav__mobile-link">Work</a>
-      <a href="photography.html" class="nav__mobile-link">Photography</a>
       <a href="about.html" class="nav__mobile-link">About</a>
       <a href="contact.html" class="nav__mobile-link">Contact</a>
+      <a href="photography.html" class="nav__mobile-link" style="color: var(--accent); font-weight: 600;">Explore Photography →</a>
       <a href="contact.html" class="btn btn--primary" style="margin-top: 1rem;">Let's Work Together</a>
       <div class="nav__mobile-social" data-footer-social></div>
     </div>
@@ -262,9 +267,9 @@
           <div class="footer__col-heading">Navigate</div>
           <div class="footer__links">
             <a href="work.html" class="footer__link">Work</a>
-            <a href="photography.html" class="footer__link">Photography</a>
             <a href="about.html" class="footer__link">About</a>
             <a href="contact.html" class="footer__link">Contact</a>
+            <a href="photography.html" class="footer__link" style="color: var(--accent);">Photography Portfolio →</a>
             <a href="#" class="footer__link" data-resume>View Resume</a>
           </div>
         </div>
@@ -286,6 +291,5 @@
   <script src="js/projects.js"></script>
   <script src="js/main.js"></script>
   <script src="js/contact.js"></script>
-  <script src="js/theme-morph.js"></script>
 </body>
 </html>

@@ -78,16 +78,18 @@ function renderNavLinks() {
 function initActiveNavLink() {
   const path = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav__link, .nav__mobile-link, .footer__link').forEach(link => {
+    link.classList.remove('active');
     const href = link.getAttribute('href') || '';
     const linkPage = href.split('/').pop();
     if (
-      (path === '' || path === 'index.html') && (linkPage === '' || linkPage === 'index.html') ||
-      linkPage === path
+      ((path === '' || path === 'index.html') && (linkPage === '' || linkPage === 'index.html')) ||
+      (linkPage && linkPage === path)
     ) {
       link.classList.add('active');
     }
   });
 }
+window.updateActiveNavLinks = initActiveNavLink;
 
 /* ── IntersectionObserver scroll reveal ──────────────────── */
 function initScrollReveal() {

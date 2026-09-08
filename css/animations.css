@@ -142,114 +142,103 @@
   navigation: auto;
 }
 
-/* ── Continuous Theme Morph Transitions ──────────────────── */
-@keyframes morphDarkToLightKeyframes {
-  0% {
-    background-color: #0e0e0f;
-    color: #f0ede8;
-  }
-  25% {
-    background-color: #242220;
-    color: #e2ded7;
-  }
-  50% {
-    background-color: #4a453e;
-    color: #dedbd4;
-  }
-  75% {
-    background-color: #bab1a2;
-    color: #282522;
-  }
-  100% {
-    background-color: #f8f6f0;
-    color: #1a1917;
-  }
-}
-
-@keyframes morphLightToDarkKeyframes {
-  0% {
-    background-color: #f8f6f0;
-    color: #1a1917;
-  }
-  25% {
-    background-color: #bab1a2;
-    color: #282522;
-  }
-  50% {
-    background-color: #4a453e;
-    color: #dedbd4;
-  }
-  75% {
-    background-color: #242220;
-    color: #e2ded7;
-  }
-  100% {
-    background-color: #0e0e0f;
-    color: #f0ede8;
-  }
-}
-
-@keyframes morphEnterLightKeyframes {
-  0% {
-    background-color: #bab1a2;
-    color: #282522;
-    opacity: 0.88;
-  }
-  50% {
-    background-color: #ede7dd;
-    color: #1f1e1c;
-    opacity: 0.96;
-  }
-  100% {
-    background-color: #f8f6f0;
-    color: #1a1917;
-    opacity: 1;
-  }
-}
-
-@keyframes morphEnterDarkKeyframes {
-  0% {
-    background-color: #3e3933;
-    color: #dedbd4;
-    opacity: 0.88;
-  }
-  50% {
-    background-color: #1a1919;
-    color: #e8e4dc;
-    opacity: 0.96;
-  }
-  100% {
-    background-color: #0e0e0f;
-    color: #f0ede8;
-    opacity: 1;
-  }
-}
-
-/* Morph Active State Classes */
-body.is-morphing-to-light {
-  animation: morphDarkToLightKeyframes 0.38s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+/* ── Persistent Viewport-Level Theme Morph Overlay ─────────── */
+.theme-morph-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999999;
   pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  will-change: opacity, background-color;
 }
 
-body.is-morphing-to-light * {
-  border-color: rgba(60, 55, 50, 0.15) !important;
-  transition: color 0.38s ease, border-color 0.38s ease, background-color 0.38s ease !important;
+.theme-morph-overlay.is-active {
+  pointer-events: all;
+  visibility: visible;
 }
 
-body.is-morphing-to-dark {
-  animation: morphLightToDarkKeyframes 0.38s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
-  pointer-events: none;
+/* Dark → Light: Near Black -> Charcoal -> Warm Grey -> Taupe -> Cream -> Ivory */
+@keyframes morphOverlayDarkToLight {
+  0% {
+    opacity: 0;
+    background-color: #0e0e0f;
+  }
+  15% {
+    opacity: 0.85;
+    background-color: #1c1b1a;
+  }
+  30% {
+    opacity: 1;
+    background-color: #38342f;
+  }
+  50% {
+    /* Midpoint: fully opaque, DOM swap occurs seamlessly */
+    opacity: 1;
+    background-color: #6d6558;
+  }
+  68% {
+    opacity: 1;
+    background-color: #b0a696;
+  }
+  84% {
+    opacity: 0.95;
+    background-color: #dfd8cb;
+  }
+  94% {
+    opacity: 0.6;
+    background-color: #f8f6f0;
+  }
+  100% {
+    opacity: 0;
+    background-color: #f8f6f0;
+  }
 }
 
-body.is-morphing-to-dark * {
-  border-color: rgba(255, 255, 255, 0.08) !important;
-  transition: color 0.38s ease, border-color 0.38s ease, background-color 0.38s ease !important;
+/* Light → Dark: Ivory -> Cream -> Taupe -> Warm Grey -> Charcoal -> Near Black */
+@keyframes morphOverlayLightToDark {
+  0% {
+    opacity: 0;
+    background-color: #f8f6f0;
+  }
+  15% {
+    opacity: 0.85;
+    background-color: #dfd8cb;
+  }
+  30% {
+    opacity: 1;
+    background-color: #b0a696;
+  }
+  50% {
+    /* Midpoint: fully opaque, DOM swap occurs seamlessly */
+    opacity: 1;
+    background-color: #6d6558;
+  }
+  68% {
+    opacity: 1;
+    background-color: #38342f;
+  }
+  84% {
+    opacity: 0.95;
+    background-color: #1c1b1a;
+  }
+  94% {
+    opacity: 0.6;
+    background-color: #0e0e0f;
+  }
+  100% {
+    opacity: 0;
+    background-color: #0e0e0f;
+  }
 }
 
-body.is-morphing-enter-light {
-  animation: morphEnterLightKeyframes 0.42s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+.theme-morph-overlay.morphing-to-light {
+  animation: morphOverlayDarkToLight 0.95s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-body.is-morphing-enter-dark {
-  animation: morphEnterDarkKeyframes 0.42s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+.theme-morph-overlay.morphing-to-dark {
+  animation: morphOverlayLightToDark 0.95s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+

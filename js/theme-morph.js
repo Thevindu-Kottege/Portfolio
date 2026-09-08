@@ -1,167 +1,294 @@
 /**
- * ============================================================
- * THEME MORPH TRANSITION COORDINATOR — js/theme-morph.js
- * ============================================================
- * Handles the continuous color-space dissolution between the
- * dark studio portfolio and the light photography journal.
+ * ============================================================================
+ * PERSISTENT VIEWPORT-LEVEL THEME MORPH ENGINE — js/theme-morph.js
+ * ============================================================================
+ * Architecture:
+ * APP ROOT
+ * │
+ * ├── Current page (stays mounted & interactive underneath)
+ * ├── Persistent transition layer (#theme-morph-overlay at z-index 9999999)
+ * └── New page (pre-fetched, mounted & styled at midpoint before reveal)
  *
- * Color Morph Steps (Dark → Light):
- * #0e0e0f (charcoal)
- *   ↓
- * #1e1d1c (soft charcoal)
- *   ↓
- * #3e3a35 (warm charcoal/slate)
- *   ↓
- * #756f66 (warm medium grey)
- *   ↓
- * #b8b0a2 (warm stone)
- *   ↓
- * #ece6dc (soft cream)
- *   ↓
- * #f8f6f0 (warm ivory)
- * ============================================================
+ * Color spectrum:
+ * Dark → Light:
+ * Near Black (#0e0e0f) → Charcoal (#1c1b1a) → Soft Charcoal (#38342f) →
+ * Warm Grey (#6d6558) → Taupe (#b0a696) → Cream (#dfd8cb) → Warm Ivory (#f8f6f0)
+ *
+ * Light → Dark:
+ * Warm Ivory (#f8f6f0) → Cream (#dfd8cb) → Taupe (#b0a696) →
+ * Warm Grey (#6d6558) → Soft Charcoal (#38342f) → Charcoal (#1c1b1a) → Near Black (#0e0e0f)
+ * ============================================================================
  */
 
-(function () {
+(function (global) {
   'use strict';
 
-  const MORPH_OUT_DURATION = 380; // ms before navigation occurs
+  const MORPH_DURATION = 950;  // total animation time (ms)
+  const SWAP_DELAY = 475;      // exact midpoint when overlay is 100% opaque (ms)
 
-  // Check incoming transition immediately before paint
-  initIncomingMorph();
+  let overlayEl = null;
+  let isTransitioning = false;
 
-  document.addEventListener('DOMContentLoaded', () => {
-    initOutgoingMorph();
-  });
+  // Helper: check if a URL belongs to Photography mode
+  function isPhotographyPath(url) {
+    if (!url) return false;
+    const clean = url.split('?')[0].split('#')[0].toLowerCase();
+    return clean.includes('photography');
+  }
 
-  /**
-   * Handle incoming morph on page load
-   */
-  function initIncomingMorph() {
-    try {
-      const incoming = sessionStorage.getItem('portfolio_morph');
-      if (!incoming) return;
-
-      sessionStorage.removeItem('portfolio_morph');
-
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        return;
-      }
-
-      const root = document.documentElement;
-
-      if (incoming === 'to-light' && document.body) {
-        document.body.classList.add('is-morphing-enter-light');
-        setTimeout(() => {
-          document.body.classList.remove('is-morphing-enter-light');
-        }, 500);
-      } else if (incoming === 'to-dark' && document.body) {
-        document.body.classList.add('is-morphing-enter-dark');
-        setTimeout(() => {
-          document.body.classList.remove('is-morphing-enter-dark');
-        }, 500);
-      } else {
-        // Body may not be parsed yet if script is in head
-        window.addEventListener('DOMContentLoaded', () => {
-          if (incoming === 'to-light') {
-            document.body.classList.add('is-morphing-enter-light');
-            setTimeout(() => {
-              document.body.classList.remove('is-morphing-enter-light');
-            }, 500);
-          } else if (incoming === 'to-dark') {
-            document.body.classList.add('is-morphing-enter-dark');
-            setTimeout(() => {
-              document.body.classList.remove('is-morphing-enter-dark');
-            }, 500);
-          }
-        });
-      }
-    } catch (e) {
-      // Storage unavailable or disabled
-    }
+  // Helper: check if current document is in Photography mode
+  function isCurrentPageLight() {
+    return document.body.classList.contains('theme-light') || isPhotographyPath(window.location.pathname);
   }
 
   /**
-   * Intercept clicks between dark and light sections to execute the morph
+   * Initialize or retrieve the persistent transition overlay element
    */
-  function initOutgoingMorph() {
-    // Determine current page theme
-    const isCurrentlyLight = document.body.classList.contains('theme-light') ||
-      window.location.pathname.includes('photography.html');
+  function ensureOverlay() {
+    if (overlayEl && document.body.contains(overlayEl)) return overlayEl;
+    overlayEl = document.getElementById('theme-morph-overlay');
+    if (!overlayEl) {
+      overlayEl = document.createElement('div');
+      overlayEl.id = 'theme-morph-overlay';
+      overlayEl.className = 'theme-morph-overlay';
+      overlayEl.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(overlayEl);
+    }
+    return overlayEl;
+  }
 
-    const links = document.querySelectorAll('a[href]');
+  /**
+   * Bind link clicks for seamless morph transitions
+   */
+  function bindNavigationLinks(context = document) {
+    const links = context.querySelectorAll('a[href]');
 
     links.forEach((link) => {
+      if (link.dataset.morphBound) return;
+      link.dataset.morphBound = 'true';
+
       const href = link.getAttribute('href');
-      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank') {
-        return;
-      }
+      if (!href) return;
 
-      // Check if target is crossing the theme boundary
-      const isTargetLight = href.includes('photography.html');
-      const isTargetDark = !isTargetLight && (
-        href.includes('index.html') ||
-        href.includes('work.html') ||
-        href.includes('about.html') ||
-        href.includes('contact.html') ||
-        href.includes('project.html') ||
-        href === '/' ||
-        href === './'
-      );
-
-      const isCrossingToLight = !isCurrentlyLight && isTargetLight;
-      const isCrossingToDark = isCurrentlyLight && isTargetDark;
-
-      if (!isCrossingToLight && !isCrossingToDark) {
+      // Ignore hash links, mailto, tel, target="_blank", or external URLs
+      if (
+        href.startsWith('#') ||
+        href.startsWith('mailto:') ||
+        href.startsWith('tel:') ||
+        link.target === '_blank' ||
+        (href.startsWith('http') && !href.startsWith(window.location.origin))
+      ) {
         return;
       }
 
       link.addEventListener('click', (e) => {
-        // If reduced motion is requested or special key pressed, do standard navigation
-        if (
-          e.metaKey ||
-          e.ctrlKey ||
-          e.shiftKey ||
-          e.altKey ||
-          window.matchMedia('(prefers-reduced-motion: reduce)').matches
-        ) {
+        // Allow standard browser shortcuts (ctrl/cmd click, etc.)
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) {
+          return;
+        }
+
+        const currentIsLight = isCurrentPageLight();
+        const targetIsLight = isPhotographyPath(href);
+
+        // Only morph when crossing the boundary between Design and Photography
+        const isCrossingBoundary = currentIsLight !== targetIsLight;
+
+        if (!isCrossingBoundary) {
+          return;
+        }
+
+        // Reduced motion: fall back to normal navigation
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
           return;
         }
 
         e.preventDefault();
-
-        if (isCrossingToLight) {
-          executeMorph('to-light', href);
-        } else {
-          executeMorph('to-dark', href);
-        }
+        const direction = targetIsLight ? 'to-light' : 'to-dark';
+        navigateWithMorph(href, direction);
       });
     });
   }
 
   /**
-   * Execute the morph animation and navigate
+   * Execute the continuous color-space morph and DOM swap
    */
-  function executeMorph(direction, targetHref) {
-    try {
-      sessionStorage.setItem('portfolio_morph', direction);
-    } catch (e) {}
+  function navigateWithMorph(targetUrl, direction) {
+    if (isTransitioning) return;
+    isTransitioning = true;
 
-    // Support native View Transition API if available
-    if (document.startViewTransition) {
-      document.body.classList.add(direction === 'to-light' ? 'is-morphing-to-light' : 'is-morphing-to-dark');
-      setTimeout(() => {
-        window.location.href = targetHref;
-      }, MORPH_OUT_DURATION);
-      return;
-    }
+    const overlay = ensureOverlay();
+    const animClass = direction === 'to-light' ? 'morphing-to-light' : 'morphing-to-dark';
 
-    // CSS Keyframe Morph
-    document.body.classList.add(direction === 'to-light' ? 'is-morphing-to-light' : 'is-morphing-to-dark');
+    // Reset overlay classes
+    overlay.className = 'theme-morph-overlay is-active ' + animClass;
 
+    // Begin fetching target document in parallel with animation start
+    const fetchPromise = fetch(targetUrl, { credentials: 'same-origin' })
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.text();
+      })
+      .catch((err) => {
+        console.warn('[Theme Morph] Pre-fetch failed, falling back to direct navigation:', err);
+        return null;
+      });
+
+    // Schedule the DOM swap at the exact midpoint when overlay is opaque
+    setTimeout(async () => {
+      let htmlText = await fetchPromise;
+
+      if (!htmlText) {
+        window.location.href = targetUrl;
+        return;
+      }
+
+      try {
+        const parser = new DOMParser();
+        const newDoc = parser.parseFromString(htmlText, 'text/html');
+
+        // 1. Update document title
+        if (newDoc.title) {
+          document.title = newDoc.title;
+        }
+
+        // 2. Synchronize stylesheets (ensure photography.css exists when entering, or removed when leaving)
+        syncStylesheets(newDoc);
+
+        // 3. Update Body class & theme state
+        document.body.className = newDoc.body.className;
+
+        // 4. Swap Main & Header/Nav & Footer
+        swapElement('nav', newDoc);
+        swapElement('main', newDoc);
+        swapElement('footer', newDoc);
+
+        // Also check for lightbox modal
+        const oldLightbox = document.getElementById('photo-lightbox');
+        const newLightbox = newDoc.getElementById('photo-lightbox');
+        if (newLightbox) {
+          if (oldLightbox) {
+            oldLightbox.replaceWith(newLightbox);
+          } else {
+            document.body.appendChild(newLightbox);
+          }
+        } else if (oldLightbox) {
+          oldLightbox.remove();
+        }
+
+        // 5. Scroll to top
+        window.scrollTo(0, 0);
+
+        // 6. Update browser history
+        if (window.location.href !== targetUrl) {
+          window.history.pushState({ url: targetUrl, isLight: direction === 'to-light' }, '', targetUrl);
+        }
+
+        // 7. Re-initialize page scripts & components
+        reinitializePageScripts(direction === 'to-light');
+
+        // 8. Rebind navigation links for subsequent transitions
+        bindNavigationLinks();
+
+      } catch (swapErr) {
+        console.error('[Theme Morph] DOM Swap Error:', swapErr);
+        window.location.href = targetUrl;
+        return;
+      }
+    }, SWAP_DELAY);
+
+    // Transition completion
     setTimeout(() => {
-      window.location.href = targetHref;
-    }, MORPH_OUT_DURATION);
+      overlay.className = 'theme-morph-overlay';
+      isTransitioning = false;
+    }, MORPH_DURATION + 50);
   }
 
-})();
+  /**
+   * Swap an element in the current DOM with its counterpart from the parsed document
+   */
+  function swapElement(selector, newDoc) {
+    const currentEl = document.querySelector(selector);
+    const newEl = newDoc.querySelector(selector);
+    if (currentEl && newEl) {
+      currentEl.replaceWith(newEl);
+    }
+  }
+
+  /**
+   * Synchronize page-specific CSS files between Design and Photography modes
+   */
+  function syncStylesheets(newDoc) {
+    const head = document.head;
+    const newLinks = Array.from(newDoc.querySelectorAll('link[rel="stylesheet"]'));
+    const currentLinks = Array.from(head.querySelectorAll('link[rel="stylesheet"]'));
+
+    newLinks.forEach((nLink) => {
+      const href = nLink.getAttribute('href');
+      const alreadyPresent = currentLinks.some((cLink) => cLink.getAttribute('href') === href);
+      if (!alreadyPresent) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        head.appendChild(link);
+      }
+    });
+  }
+
+  /**
+   * Re-initialize scripts, event listeners, and animations for the newly swapped page
+   */
+  function reinitializePageScripts(isLightMode) {
+    if (typeof initMobileMenu === 'function') initMobileMenu();
+    if (typeof initBackToTop === 'function') initBackToTop();
+    if (typeof initNavScroll === 'function') initNavScroll();
+    if (typeof updateActiveNavLinks === 'function') updateActiveNavLinks();
+    if (typeof renderFooter === 'function') renderFooter();
+    if (typeof initScrollReveal === 'function') initScrollReveal();
+
+    if (isLightMode) {
+      if (typeof window.initPhotographyPage === 'function') {
+        window.initPhotographyPage();
+      } else {
+        const evt = new CustomEvent('photography:init');
+        document.dispatchEvent(evt);
+      }
+    } else {
+      if (typeof initHeroBackground === 'function') initHeroBackground();
+      if (typeof renderHomeProjects === 'function') renderHomeProjects();
+      if (typeof renderAllProjects === 'function') renderAllProjects();
+      if (typeof renderProjectDetail === 'function') renderProjectDetail();
+      if (typeof initContactForm === 'function') initContactForm();
+    }
+  }
+
+  /**
+   * Handle browser back / forward buttons (popstate)
+   */
+  window.addEventListener('popstate', () => {
+    const targetUrl = window.location.href;
+    const currentIsLight = isCurrentPageLight();
+    const targetIsLight = isPhotographyPath(targetUrl);
+
+    if (currentIsLight !== targetIsLight) {
+      const direction = targetIsLight ? 'to-light' : 'to-dark';
+      navigateWithMorph(targetUrl, direction);
+    } else {
+      window.location.reload();
+    }
+  });
+
+  // Early initialization
+  document.addEventListener('DOMContentLoaded', () => {
+    ensureOverlay();
+    bindNavigationLinks();
+  });
+
+  // Expose API globally
+  global.ThemeMorph = {
+    navigateWithMorph,
+    bindNavigationLinks,
+    isPhotographyPath,
+  };
+
+})(typeof window !== 'undefined' ? window : this);
+

@@ -63,8 +63,11 @@
     if (!source) return '';
 
     // If source is an object with image or googleDriveId property
-    if (typeof source === 'object') {
-      source = source.googleDriveId || source.image || source.src || source.thumbnail || '';
+    if (typeof source === 'object' && source !== null) {
+      if (source.heroImage && typeof source.heroImage === 'object') {
+        source = source.heroImage;
+      }
+      source = source.googleDriveId || source.fileId || source.driveId || source.image || source.src || source.thumbnail || source.url || '';
     }
 
     if (typeof source !== 'string' || !source.trim()) return '';

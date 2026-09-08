@@ -114,17 +114,18 @@ function renderProjectPage(project) {
       galleryEl.className = `project-gallery ${project.gallery.length === 1 ? 'project-gallery--full' : ''}`;
       galleryEl.innerHTML = project.gallery.map(img => {
         const resolvedSrc = typeof ImageUtils !== 'undefined'
-          ? ImageUtils.resolveImageUrl(img.src, 'full')
-          : img.src;
+          ? ImageUtils.resolveImageUrl(img, 'full')
+          : (img.src || img.googleDriveId || img);
+        const altText = (typeof img === 'object' && img.alt) ? img.alt : project.title;
 
         return `
           <div class="project-gallery__item reveal">
             <img
               src="${resolvedSrc}"
-              alt="${img.alt}"
+              alt="${altText}"
               loading="lazy"
               decoding="async"
-              onerror="if (typeof ImageUtils !== 'undefined') ImageUtils.handleImageError(this, '${img.alt.replace(/'/g, "\\'")}', '${project.categoryLabel}');"
+              onerror="if (typeof ImageUtils !== 'undefined') ImageUtils.handleImageError(this, '${altText.replace(/'/g, "\\'")}', '${project.categoryLabel}');"
             >
           </div>
         `;
