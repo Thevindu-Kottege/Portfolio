@@ -241,7 +241,9 @@ function getAllProjects() {
  * Get featured projects (shown on home page)
  */
 function getFeaturedProjects(limit = 6) {
-  return PROJECTS.filter(p => p.featured).slice(0, limit);
+  const featured = PROJECTS.filter(p => p.featured);
+  if (featured.length > 0) return featured.slice(0, limit);
+  return PROJECTS.slice(0, limit);
 }
 
 /**

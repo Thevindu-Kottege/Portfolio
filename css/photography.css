@@ -255,12 +255,16 @@ body.theme-light .nav__mobile-link:hover {
 
 /* ── Photography Series Showcase ───────────────────────────── */
 .series-section {
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
   padding-block: clamp(3rem, 6vw, 5rem);
   background-color: var(--bg-secondary);
   border-block: 1px solid var(--border);
 }
 
 .series-grid {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: clamp(1.25rem, 2.5vw, 2rem);
@@ -1085,3 +1089,28 @@ body.theme-light .back-to-top:hover {
   }
 }
 
+/* ── Photography Contact Form Status ─────────────────────── */
+#photo-form-status {
+  display: none;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+#photo-form-status.visible {
+  display: block;
+}
+
+#photo-form-status.success {
+  background: rgba(74, 188, 118, 0.12);
+  color: #2d7a4f;
+  border: 1px solid rgba(74, 188, 118, 0.3);
+}
+
+#photo-form-status.error {
+  background: rgba(224, 82, 82, 0.1);
+  color: #c0392b;
+  border: 1px solid rgba(224, 82, 82, 0.25);
+}

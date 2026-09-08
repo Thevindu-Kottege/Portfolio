@@ -152,93 +152,73 @@
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
-  will-change: opacity, background-color;
+  will-change: opacity, background-color, backdrop-filter;
 }
 
 .theme-morph-overlay.is-active {
   pointer-events: all;
   visibility: visible;
+  /* Frosted-glass blur ensures the content underneath blurs rather than
+     painting hard opaque colour bands. Only 2 keyframe properties do the
+     heavy lifting: opacity (0 → 1 → 0) and background-color (source → dest). */
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
 }
 
-/* Dark → Light: Near Black -> Charcoal -> Warm Grey -> Taupe -> Cream -> Ivory */
+/*
+  Dark → Light
+  Strategy: fade to a near-opaque ivory-tinted veil at midpoint (DOM swap),
+  then dissolve away. No intermediate colour stops = zero banding.
+*/
 @keyframes morphOverlayDarkToLight {
   0% {
     opacity: 0;
-    background-color: #0e0e0f;
+    background-color: rgba(14, 14, 15, 0.0);
   }
-  15% {
-    opacity: 0.85;
-    background-color: #1c1b1a;
-  }
-  30% {
+  38% {
     opacity: 1;
-    background-color: #38342f;
+    background-color: rgba(218, 210, 196, 0.92);
   }
-  50% {
-    /* Midpoint: fully opaque, DOM swap occurs seamlessly */
+  52% {
+    /* DOM swap happens here — overlay is fully opaque */
     opacity: 1;
-    background-color: #6d6558;
-  }
-  68% {
-    opacity: 1;
-    background-color: #b0a696;
-  }
-  84% {
-    opacity: 0.95;
-    background-color: #dfd8cb;
-  }
-  94% {
-    opacity: 0.6;
-    background-color: #f8f6f0;
+    background-color: rgba(248, 246, 240, 0.98);
   }
   100% {
     opacity: 0;
-    background-color: #f8f6f0;
+    background-color: rgba(248, 246, 240, 0.0);
   }
 }
 
-/* Light → Dark: Ivory -> Cream -> Taupe -> Warm Grey -> Charcoal -> Near Black */
+/*
+  Light → Dark
+  Strategy: reverse — fade to a near-opaque charcoal veil at midpoint, dissolve.
+*/
 @keyframes morphOverlayLightToDark {
   0% {
     opacity: 0;
-    background-color: #f8f6f0;
+    background-color: rgba(248, 246, 240, 0.0);
   }
-  15% {
-    opacity: 0.85;
-    background-color: #dfd8cb;
-  }
-  30% {
+  38% {
     opacity: 1;
-    background-color: #b0a696;
+    background-color: rgba(28, 27, 26, 0.92);
   }
-  50% {
-    /* Midpoint: fully opaque, DOM swap occurs seamlessly */
+  52% {
+    /* DOM swap happens here — overlay is fully opaque */
     opacity: 1;
-    background-color: #6d6558;
-  }
-  68% {
-    opacity: 1;
-    background-color: #38342f;
-  }
-  84% {
-    opacity: 0.95;
-    background-color: #1c1b1a;
-  }
-  94% {
-    opacity: 0.6;
-    background-color: #0e0e0f;
+    background-color: rgba(14, 14, 15, 0.98);
   }
   100% {
     opacity: 0;
-    background-color: #0e0e0f;
+    background-color: rgba(14, 14, 15, 0.0);
   }
 }
 
 .theme-morph-overlay.morphing-to-light {
-  animation: morphOverlayDarkToLight 0.95s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: morphOverlayDarkToLight 0.95s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 .theme-morph-overlay.morphing-to-dark {
-  animation: morphOverlayLightToDark 0.95s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: morphOverlayLightToDark 0.95s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 

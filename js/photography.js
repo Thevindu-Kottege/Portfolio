@@ -182,7 +182,12 @@
   function renderSeries() {
     if (!seriesContainerEl || typeof PHOTOGRAPHY_SERIES === 'undefined') return;
 
-    seriesContainerEl.innerHTML = PHOTOGRAPHY_SERIES.map((series) => {
+    const cfg = (typeof CONFIG !== 'undefined' && CONFIG.photography) ? CONFIG.photography : {};
+    const limit = cfg.featuredSeriesCount || 3;
+    const featured = PHOTOGRAPHY_SERIES.filter((s) => s.featured);
+    const seriesToShow = featured.length ? featured.slice(0, limit) : PHOTOGRAPHY_SERIES.slice(0, limit);
+
+    seriesContainerEl.innerHTML = seriesToShow.map((series) => {
       const coverSrc = typeof ImageUtils !== 'undefined'
         ? ImageUtils.resolveImageUrl(series.coverImage, 'medium')
         : series.coverImage;
@@ -217,22 +222,27 @@
     }).join('');
 
     seriesContainerEl.querySelectorAll('.series-card').forEach((card) => {
-      const handleSeriesClick = () => {
+      const handleSeriesClick = (e) => {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
         const seriesId = card.dataset.seriesId;
         // If on gallery page, filter directly; if on home, navigate to gallery page with query
         if (galleryEl) {
           filterBySeries(seriesId);
         } else {
-          window.location.href = `photography-gallery.html?series=${seriesId}`;
+          window.location.href = `photography-gallery.html?series=${encodeURIComponent(seriesId)}`;
         }
       };
-      card.addEventListener('click', handleSeriesClick);
-      card.addEventListener('keydown', (e) => {
+      card.onclick = handleSeriesClick;
+      card.onkeydown = (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          handleSeriesClick();
+          e.stopPropagation();
+          handleSeriesClick(e);
         }
-      });
+      };
     });
   }
 
@@ -244,7 +254,11 @@
 
     const presentCategories = new Set(['All']);
     PHOTOGRAPHY_PHOTOS.forEach((p) => {
-      if (p.category) presentCategories.add(p.category);
+      if (p.category) {
+        const normalized = p.category.trim();
+        const cap = normalized.charAt(0).toUpperCase() + normalized.slice(1);
+        presentCategories.add(cap);
+      }
     });
 
     const categories = Array.from(presentCategories);
@@ -253,10 +267,10 @@
       .map((cat) => `
         <button
           type="button"
-          class="photo-filter-btn ${cat === currentCategory ? 'active' : ''}"
+          class="photo-filter-btn ${cat.toLowerCase() === currentCategory.toLowerCase() ? 'active' : ''}"
           data-filter="${cat}"
           role="tab"
-          aria-selected="${cat === currentCategory}"
+          aria-selected="${cat.toLowerCase() === currentCategory.toLowerCase()}"
         >
           ${cat}
         </button>
@@ -264,19 +278,26 @@
       .join('');
 
     filtersContainerEl.querySelectorAll('.photo-filter-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
+      btn.onclick = (e) => {
+        if (e) e.preventDefault();
         const cat = btn.dataset.filter;
         setActiveCategory(cat);
-      });
+      };
     });
   }
 
   function setActiveCategory(category) {
     currentCategory = category;
 
+    // Clear URL series param if user explicitly picks a category
+    if (window.location.search.includes('series=')) {
+      const cleanUrl = window.location.pathname;
+      window.history.replaceState({}, '', cleanUrl);
+    }
+
     if (filtersContainerEl) {
       filtersContainerEl.querySelectorAll('.photo-filter-btn').forEach((btn) => {
-        const isSelected = btn.dataset.filter === category;
+        const isSelected = btn.dataset.filter.trim().toLowerCase() === category.trim().toLowerCase();
         btn.classList.toggle('active', isSelected);
         btn.setAttribute('aria-selected', String(isSelected));
       });
@@ -301,7 +322,7 @@
       });
     }
 
-    renderPhotoWallItems(true);
+    renderPhotoWallItems(false);
   }
 
   /**
@@ -310,22 +331,26 @@
   function renderGalleryWall(category = 'All') {
     if (!galleryEl || typeof PHOTOGRAPHY_PHOTOS === 'undefined') return;
 
-    if (category === 'All') {
-      filteredPhotos = [...PHOTOGRAPHY_PHOTOS];
-    } else {
-      filteredPhotos = PHOTOGRAPHY_PHOTOS.filter(
-        (p) => p.category.toLowerCase() === category.toLowerCase()
-      );
-    }
+    const normCat = (category || 'All').trim().toLowerCase();
 
-    // Check for query param ?series=
+    // Check for query param ?series= only when not filtering by specific category
     const params = new URLSearchParams(window.location.search);
     const seriesParam = params.get('series');
-    if (seriesParam) {
+    if (seriesParam && normCat === 'all') {
       const seriesMatch = PHOTOGRAPHY_PHOTOS.filter((p) => p.seriesId === seriesParam);
       if (seriesMatch.length) {
         filteredPhotos = seriesMatch;
+        renderPhotoWallItems(false);
+        return;
       }
+    }
+
+    if (normCat === 'all') {
+      filteredPhotos = [...PHOTOGRAPHY_PHOTOS];
+    } else {
+      filteredPhotos = PHOTOGRAPHY_PHOTOS.filter(
+        (p) => p.category && p.category.trim().toLowerCase() === normCat
+      );
     }
 
     renderPhotoWallItems(false);
@@ -413,7 +438,11 @@
 
   function bindPhotoCards(container, photosArray) {
     container.querySelectorAll('.photo-card').forEach((card) => {
-      const open = () => {
+      const open = (e) => {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
         const idx = parseInt(card.dataset.index, 10);
         // Ensure filteredPhotos points to the active array
         filteredPhotos = photosArray;
@@ -423,7 +452,8 @@
       card.onkeydown = (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          open();
+          e.stopPropagation();
+          open(e);
         }
       };
     });
@@ -440,8 +470,8 @@
 
     if (total <= visiblePhotoCount) {
       if (seeMoreBtnEl) seeMoreBtnEl.style.display = 'none';
-      if (allPhotosLoadedEl && total > 4) {
-        allPhotosLoadedEl.style.display = 'block';
+      if (allPhotosLoadedEl) {
+        allPhotosLoadedEl.style.display = total > 0 ? 'block' : 'none';
       }
     } else {
       if (seeMoreBtnEl) {
@@ -449,7 +479,8 @@
         if (seeMoreCounterEl) {
           seeMoreCounterEl.textContent = `(${currentlyShown} of ${total})`;
         }
-        seeMoreBtnEl.onclick = () => {
+        seeMoreBtnEl.onclick = (e) => {
+          if (e) e.preventDefault();
           visiblePhotoCount += photosPerLoad;
           renderPhotoWallItems(true);
         };

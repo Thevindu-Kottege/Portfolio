@@ -67,6 +67,16 @@ const CONFIG = {
       initialPhotoCount: 12, // Initial number of photos displayed
       photosPerLoad: 8,      // Photos added on each "See More" click
     },
+
+    // Curated series count on Photography home page
+    featuredSeriesCount: 3,
+  },
+
+  // --- EmailJS Configuration (Shared across Design & Photography) ---
+  emailjs: {
+    serviceId: "service_pg7au8k",
+    templateId: "template_3sx48b8",
+    publicKey: "Z1A6TfvzrBz_Qre0X",
   },
 
   // --- Copyright ---
@@ -76,8 +86,10 @@ const CONFIG = {
 // Freeze to prevent accidental mutation
 Object.freeze(CONFIG);
 Object.freeze(CONFIG.social);
+if (CONFIG.emailjs) Object.freeze(CONFIG.emailjs);
 if (CONFIG.photography) {
   Object.freeze(CONFIG.photography);
   if (CONFIG.photography.gallery) Object.freeze(CONFIG.photography.gallery);
 }
+
 

@@ -183,11 +183,11 @@
           window.history.pushState({ url: targetUrl, isLight: direction === 'to-light' }, '', targetUrl);
         }
 
-        // 7. Re-initialize page scripts & components
-        reinitializePageScripts(direction === 'to-light');
-
-        // 8. Rebind navigation links for subsequent transitions
-        bindNavigationLinks();
+        // 7. Synchronize scripts & re-initialize page scripts
+        syncScripts(newDoc, () => {
+          reinitializePageScripts(direction === 'to-light');
+          bindNavigationLinks();
+        });
 
       } catch (swapErr) {
         console.error('[Theme Morph] DOM Swap Error:', swapErr);
@@ -235,6 +235,38 @@
   }
 
   /**
+   * Synchronize scripts that the new page requires if not already loaded
+   */
+  function syncScripts(newDoc, callback) {
+    const newScripts = Array.from(newDoc.querySelectorAll('script[src]'));
+    const currentScripts = Array.from(document.querySelectorAll('script[src]'));
+    const currentSrcs = currentScripts.map((s) => s.getAttribute('src'));
+
+    const scriptsToLoad = newScripts.filter((ns) => {
+      const src = ns.getAttribute('src');
+      return src && !currentSrcs.includes(src) && !src.includes('theme-morph.js');
+    });
+
+    if (scriptsToLoad.length === 0) {
+      if (callback) callback();
+      return;
+    }
+
+    let loadedCount = 0;
+    scriptsToLoad.forEach((s) => {
+      const script = document.createElement('script');
+      script.src = s.getAttribute('src');
+      script.onload = script.onerror = () => {
+        loadedCount++;
+        if (loadedCount === scriptsToLoad.length && callback) {
+          callback();
+        }
+      };
+      document.body.appendChild(script);
+    });
+  }
+
+  /**
    * Re-initialize scripts, event listeners, and animations for the newly swapped page
    */
   function reinitializePageScripts(isLightMode) {
@@ -253,9 +285,11 @@
         document.dispatchEvent(evt);
       }
     } else {
+      if (typeof window.initHomePage === 'function') window.initHomePage();
       if (typeof initHeroBackground === 'function') initHeroBackground();
-      if (typeof renderHomeProjects === 'function') renderHomeProjects();
+      if (typeof renderFeaturedGrid === 'function') renderFeaturedGrid();
       if (typeof renderAllProjects === 'function') renderAllProjects();
+      if (typeof renderWorkGrid === 'function') renderWorkGrid('all');
       if (typeof renderProjectDetail === 'function') renderProjectDetail();
       if (typeof initContactForm === 'function') initContactForm();
     }

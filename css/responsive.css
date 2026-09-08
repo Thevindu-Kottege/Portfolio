@@ -13,6 +13,8 @@
     display: none;
   }
   .nav__cta .btn--primary { display: none; }
+  /* Hide mode-switcher pill so hamburger stays inside the viewport */
+  .nav__cross-link { display: none !important; }
   .nav__hamburger { display: flex; }
 
   /* Hero */

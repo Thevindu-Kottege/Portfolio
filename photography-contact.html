@@ -31,6 +31,8 @@
 
   <!-- Early Theme Morph Initialization -->
   <script src="js/theme-morph.js"></script>
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body class="theme-light page-transition">
 
@@ -73,7 +75,7 @@
       <a href="photography-gallery.html" class="nav__mobile-link">Photography</a>
       <a href="photography-about.html" class="nav__mobile-link">About</a>
       <a href="photography-contact.html" class="nav__mobile-link active">Contact</a>
-      <a href="index.html" class="btn btn--primary" style="margin-top: 1rem;">Explore Design &amp; Video →</a>
+      <a href="index.html" class="nav__mobile-cross-link">Explore Design &amp; Video &#8594;</a>
       <div class="nav__mobile-social" data-footer-social></div>
     </div>
   </nav>
@@ -218,7 +220,7 @@
                 ></textarea>
               </div>
 
-              <div id="photo-form-status" style="display: none; padding: 0.75rem 1rem; border-radius: var(--radius-sm); font-size: var(--text-sm);"></div>
+              <div id="photo-form-status"></div>
 
               <button type="submit" class="btn btn--primary btn--lg" style="width: 100%; justify-content: center; margin-top: 0.5rem;">
                 Send Inquiry <span class="btn__arrow">→</span>
@@ -293,5 +295,6 @@
   <script src="js/photography-data.js"></script>
   <script src="js/main.js"></script>
   <script src="js/photography.js"></script>
+  <script src="js/contact.js"></script>
 </body>
 </html>

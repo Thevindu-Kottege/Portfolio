@@ -79,6 +79,7 @@ const PHOTOGRAPHY_SERIES = [
     coverImage: "assets/images/proj1_sports_campaign.jpg", // REPLACE_HERE with Google Drive link or local image
     imageCount: 4,
     camera: "Sony A7 IV · 35mm f/1.4 GM",
+    featured: true,
   },
   {
     id: "southern-coast",
@@ -90,6 +91,7 @@ const PHOTOGRAPHY_SERIES = [
     coverImage: "assets/images/proj5_product_photo.jpg", // REPLACE_HERE with Google Drive link or local image
     imageCount: 4,
     camera: "Sony A7 IV · 24-70mm f/2.8 GM II",
+    featured: true,
   },
   {
     id: "urban-geometry",
@@ -101,6 +103,7 @@ const PHOTOGRAPHY_SERIES = [
     coverImage: "assets/images/proj2_youtube_branding.jpg", // REPLACE_HERE with Google Drive link or local image
     imageCount: 3,
     camera: "Sony A7 IV · 16-35mm f/2.8 GM",
+    featured: true,
   },
   {
     id: "quiet-places",
@@ -112,6 +115,7 @@ const PHOTOGRAPHY_SERIES = [
     coverImage: "assets/images/proj4_podcast_identity.jpg", // REPLACE_HERE with Google Drive link or local image
     imageCount: 3,
     camera: "Fujifilm X-T5 · 23mm f/1.4",
+    featured: false,
   },
 ];
 

@@ -5,11 +5,16 @@
  * ============================================================
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initHomePage() {
   initHeroBackground();
   renderFeaturedGrid();
   initSkillBars();
-});
+}
+
+window.initHomePage = initHomePage;
+window.renderFeaturedGrid = renderFeaturedGrid;
+
+document.addEventListener('DOMContentLoaded', initHomePage);
 
 /**
  * Configure hero background image, opacity, and subtle parallax
